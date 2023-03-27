@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "338335592458",
+    "project_id": "learningstrenght",
+    "storage_bucket": "learningstrenght.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:338335592458:android:65d5587e8884c16e62aff3",
+        "android_client_info": {
+          "package_name": "com.example.learningstrenght"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "338335592458-8vagtoi0eq7e377uiq333ooitmguc674.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIGnyu4Vo4xMAmN-MWNmBKDynPpoGAuSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "338335592458-8vagtoi0eq7e377uiq333ooitmguc674.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
