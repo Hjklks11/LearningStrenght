@@ -55,6 +55,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String emailUser = email.getText().toString().trim();
+                /* TODO: Revisar si se mete un correo de hotmail u outlook*/
+                if(!emailUser.contains("@gmail.com")){
+                    emailUser = emailUser.concat("@gmail.com");
+                }
                 String passUser = password.getText().toString().trim();
 
                 if (emailUser.isEmpty() || passUser.isEmpty()) {
