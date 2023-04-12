@@ -64,12 +64,16 @@ public class LoginActivity extends AppCompatActivity {
                 if (emailUser.isEmpty() || passUser.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Tienes que ingresar correo y contraseña.", Toast.LENGTH_SHORT).show();
                 } else {
+                    mAuth.signOut();
                     loginUserEmail(emailUser, passUser);
                 }
             }
         });
 
-        btnGoogle.setOnClickListener(view -> loginUserGoogle());
+        btnGoogle.setOnClickListener(view -> {
+            mAuth.signOut();
+            loginUserGoogle();
+        });
     }
 
     private void googleSignIn() {
@@ -110,8 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Inicio de sesion con credencial correcto.");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //finish();
-                            //startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
+                            finish();
+                            startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
                         } else {
                             Log.w(TAG, "Error al iniciar sesion con credencial: " + task.getException());
                             Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();

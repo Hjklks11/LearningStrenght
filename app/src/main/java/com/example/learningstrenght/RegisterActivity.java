@@ -60,11 +60,15 @@ public class RegisterActivity extends AppCompatActivity {
                 if (emailUser.isEmpty() || passUser.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Tienes que ingresar correo y contraseña.", Toast.LENGTH_SHORT).show();
                 } else {
+                    mAuth.signOut();
                     registerUserEmail(emailUser, passUser);
                 }
             }
         });
-        btnGoogle.setOnClickListener(view -> registerUserGoogle());
+        btnGoogle.setOnClickListener(view -> {
+            mAuth.signOut();
+            registerUserGoogle();
+        });
     }
 
     private void googleRegister() {
@@ -105,8 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Inicio de sesion con credencial correcto.");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            //finish();
-                            //startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
+                            finish();
+                            startActivity(new Intent(RegisterActivity.this, RegisterDataActivity.class));
                         } else {
                             Log.w(TAG, "Error al iniciar sesion con credencial: " + task.getException());
                             Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
@@ -129,11 +133,11 @@ public class RegisterActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     finish();
                     startActivity(new Intent(RegisterActivity.this, RegisterDataActivity.class));
-                        Toast.makeText(RegisterActivity.this, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //Toast.makeText(RegisterActivity.this, "error al crear cuenta", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(RegisterActivity.this, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(RegisterActivity.this, "error al crear cuenta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
 
             }
         }).addOnFailureListener(new OnFailureListener() {
