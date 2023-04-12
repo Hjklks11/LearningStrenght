@@ -2,10 +2,14 @@ package com.example.learningstrenght;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,9 +39,15 @@ public class RegisterDataActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Subir archivos a la base de datos
-                //finish();
-                //startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
+                if (usuario.isEmpty() || edad.isEmpty()) {
+                    Toast.makeText(RegisterDataActivity.this, "Por favor, rellene los campos marcados con un *.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // TODO: Subir archivos a la base de datos
+                    FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+                    FirebaseAuth.getInstance().signOut();
+                    finish();
+                    startActivity(new Intent(RegisterDataActivity.this, LoginActivity.class));
+                }
             }
         });
     }

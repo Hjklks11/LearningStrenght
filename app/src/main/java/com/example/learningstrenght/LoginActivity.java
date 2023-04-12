@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String emailUser = email.getText().toString().trim();
                 /* TODO: Revisar si se mete un correo de hotmail u outlook*/
-                if(!emailUser.contains("@gmail.com")){
+                if (!emailUser.contains("@gmail.com")) {
                     emailUser = emailUser.concat("@gmail.com");
                 }
                 String passUser = password.getText().toString().trim();
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
-    private void loginUserGoogle(){
+    private void loginUserGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -131,11 +131,9 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    /*finish();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));*/
-                    Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
-                } else{
+                if (task.isSuccessful()) {
+                    checkEmailVerified();
+                } else {
                     Log.w(TAG, "Error al iniciar sesion con email y contraseña: " + task.getException());
                     Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -147,5 +145,16 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void checkEmailVerified() {
+        if (mAuth.getCurrentUser().isEmailVerified()) {
+            finish();
+            startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
+            Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
+        } else {
+            mAuth.signOut();
+            Toast.makeText(LoginActivity.this, "Antes de iniciar sesion tienes que verificar tu correo.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

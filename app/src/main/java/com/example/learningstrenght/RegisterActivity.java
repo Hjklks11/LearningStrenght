@@ -66,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
         btnGoogle.setOnClickListener(view -> registerUserGoogle());
     }
+
     private void googleRegister() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -74,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
-    private void registerUserGoogle(){
+    private void registerUserGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -125,14 +126,15 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
-                    /*finish();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));*/
-                    Toast.makeText(RegisterActivity.this, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show();
-                } else{
-                    //Toast.makeText(RegisterActivity.this, "error al crear cuenta", Toast.LENGTH_SHORT).show();
-                    Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                }
+                if (task.isSuccessful()) {
+                    finish();
+                    startActivity(new Intent(RegisterActivity.this, RegisterDataActivity.class));
+                        Toast.makeText(RegisterActivity.this, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show();
+                    } else {
+                        //Toast.makeText(RegisterActivity.this, "error al crear cuenta", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
