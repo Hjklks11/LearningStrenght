@@ -1,8 +1,8 @@
 package Entities;
 
 
-import android.arch.persistence.room.Embedded;
-import android.arch.persistence.room.Entity;
+import androidx.room.Embedded;
+import androidx.room.Entity;
 
 
 import androidx.room.Junction;

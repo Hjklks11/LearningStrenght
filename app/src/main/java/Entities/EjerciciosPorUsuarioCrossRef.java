@@ -1,11 +1,9 @@
 package Entities;
 
-import android.arch.persistence.room.Entity;
+import androidx.room.Entity;
 
+@Entity(primaryKeys = {"idUsuario", "idEjercicio"})
 public class EjerciciosPorUsuarioCrossRef {
-    @Entity(primaryKeys = {"idUsuario","idEjercicio"})
-    public class EjerciciosPorRutinaCrossRef {
-        public int idUsuario;
-        public int idEjercicio;
-    }
+    public int idUsuario;
+    public int idEjercicio;
 }

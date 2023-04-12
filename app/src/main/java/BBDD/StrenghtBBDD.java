@@ -1,21 +1,22 @@
 package BBDD;
-import android.arch.persistence.db.SupportSQLiteDatabase;
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.sqlite.db.SupportSQLiteDatabase;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import DAO.DaoEjercicio;
-import DAO.EjerciciosPorUsuario;
+import DAO.DaoEjerciciosPorUsuario;
 import Entities.Ejercicio;
 import Entities.EjerciciosPorRutina;
 import Entities.Rutina;
 import Entities.Usuarios;
 
-@Database(entities = {Ejercicio.class, Rutina.class, EjerciciosPorRutina.class, EjerciciosPorUsuario.class, Usuarios.class},version = 1,exportSchema = false)
+@Database(entities = {Ejercicio.class, Rutina.class, EjerciciosPorRutina.class, DaoEjerciciosPorUsuario.class, Usuarios.class},version = 1,exportSchema = false)
     public abstract class StrenghtBBDD extends RoomDatabase {
         public abstract DaoEjercicio daoEjercicio();
         private static final String DB_NOMBRE = "LearningStrength_BBDD";

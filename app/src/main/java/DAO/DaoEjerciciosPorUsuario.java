@@ -6,13 +6,11 @@ import androidx.room.Transaction;
 
 import java.util.List;
 
-import Entities.EjerciciosPorRutina;
-
 @Dao
-public interface EjerciciosPorUsuario {
+public interface DaoEjerciciosPorUsuario {
 
     @Transaction
     @Query("SELECT * FROM Usuarios")
-    public List<EjerciciosPorUsuario> getEjerciciosPorUsuario();
+   public List<DaoEjerciciosPorUsuario> getEjerciciosPorUsuario();
 
 }
