@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".PantallaPrincipal">
 
+    <Button
+        android:id="@+id/btnSignOutPantallaPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="247dp"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>
