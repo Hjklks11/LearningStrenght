@@ -44,19 +44,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == event.KEYCODE_BACK) {
+            /* Opcion 1 */
+            //startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            /* Opcion 2 */
             startActivity(new Intent(MainActivity.this, PantallaPrincipal.class));
         }
-        return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null){
-            startActivity(new Intent(MainActivity.this, PantallaPrincipal.class));
-        }
+        return super.onKeyUp(keyCode, event);
     }
 }
