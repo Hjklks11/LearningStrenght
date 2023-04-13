@@ -6,11 +6,17 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/CbumPerro"
+        android:icon="@drawable/cbumperro"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".calculadoras.rm.FormulasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".calculadoras.rm.CalculadoraRmActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
