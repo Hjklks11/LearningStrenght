@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PantallaPrincipal extends AppCompatActivity {
-    Button signOut;
+    Button signOut, calculadora;
     FirebaseAuth mAuth;
 
     @Override
@@ -31,11 +31,18 @@ public class PantallaPrincipal extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         signOut = findViewById(R.id.btnSignOutPantallaPrincipal);
+        calculadora = findViewById(R.id.btnCalculadoraPantallaPrincipal);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mAuth.signOut();
                 startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+            }
+        });
+        calculadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
             }
         });
     }
