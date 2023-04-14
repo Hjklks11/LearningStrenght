@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">LearningStrenght</string>
+
+<!--    Spinner Calculadora de macros   -->
+    <string name="promptActividad">Selecciona tu nivel de actividad fisica</string>
+    <string-array name="spinnerActividad">
+        <item>Selecciona tu nivel de actividad fisica</item>
+        <item>1.55-> Sedentario</item>
+        <item>1.85-> Moderadamente activo</item>
+        <item>2.2-> Muy activo</item>
+        <item>2.4-> Extremadamente activo</item>
+    </string-array>
+
 </resources>
