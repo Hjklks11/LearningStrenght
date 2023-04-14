@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".calculadoras.rm.FormulasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".calculadoras.rm.CalculadoraRmActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
