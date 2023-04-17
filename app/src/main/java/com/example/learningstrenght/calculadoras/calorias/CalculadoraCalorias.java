@@ -1,5 +1,6 @@
 package com.example.learningstrenght.calculadoras.calorias;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,23 +41,21 @@ public class CalculadoraCalorias {
     }
 
     private Macros calculoMacros(Double calorias, String tipo) {
-        Integer prote;
-        Double carbos;
-        Double grasas;
+        Double prote, grasas, carbos;
         if (tipo.equals("Volumen")){
-            prote = peso * 2;
-            grasas = calorias * 0.3;
-            carbos = calorias - prote - grasas;
+            prote = peso * 2d; // gramos de proteina
+            grasas = calorias * 0.3; // calorias de grasas
+            carbos = calorias - prote * 4 - grasas; // calorias de carbos
         } else if(tipo.equals("Definicion")) {
-            prote = peso * 3;
+            prote = peso * 3d;
             grasas = calorias * 0.3;
-            carbos = calorias - prote - grasas;
+            carbos = calorias - prote * 4 - grasas;
         } else {
-            prote = peso * 3;
+            prote = peso * 3d;
             grasas = calorias * 0.3;
-            carbos = calorias - prote - grasas;
+            carbos = calorias - prote * 4 - grasas;
         }
-        return new Macros(calorias, prote * 4, grasas * 9, carbos * 4);
+        return new Macros(calorias, prote, grasas / 9, carbos / 4); // gramos de cada
     }
 
 }

@@ -20,6 +20,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:foregroundGravity="center"
+        android:background="@android:color/transparent"
         android:text="r= número de repeticiones realizadas y w= peso con el que se han realizado." />
 
     <ImageView
@@ -27,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#00FFFFFF"
+        android:background="@android:color/transparent"
         android:foregroundGravity="center"
         android:src="@drawable/cbumperro" />
 </LinearLayout>

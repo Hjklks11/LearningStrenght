@@ -32,7 +32,7 @@ public class FormulasActivity extends AppCompatActivity {
         imagen = findViewById(R.id.imagenFormulas);
         txt = findViewById(R.id.txtFormulas);
 
-        txt.setWidth(foto.getIntrinsicWidth());
+        //txt.setWidth(foto.getIntrinsicWidth());
         imagen.setImageDrawable(foto);
 
         layout.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class)));

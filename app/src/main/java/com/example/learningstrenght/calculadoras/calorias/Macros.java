@@ -1,14 +1,20 @@
 package com.example.learningstrenght.calculadoras.calorias;
 
-public class Macros {
-    Integer prote;
-    Double calorias, carbos, grasas;
+import java.text.DecimalFormat;
 
-    public Macros(Double calorias, Integer prote, Double carbos, Double grasas) {
-        this.calorias = calorias;
-        this.prote = prote;
-        this.carbos = carbos;
-        this.grasas = grasas;
+public class Macros {
+    String calorias, prote, carbos, grasas;
+
+    public Macros(Double calorias, Double prote, double carbos, double grasas) {
+        redondear(calorias, prote, carbos, grasas);
+    }
+
+    private void redondear(Double calorias, Double prote, double carbos, double grasas) {
+        DecimalFormat df = new DecimalFormat("#.00");
+        this.calorias = df.format(calorias);
+        this.prote = df.format(prote);
+        this.grasas =df.format(grasas);
+        this.carbos = df.format(carbos);
     }
 
     @Override

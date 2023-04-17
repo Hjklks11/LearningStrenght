@@ -80,7 +80,7 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
 
         volumen = findViewById(R.id.txtVolumenCalculadoraCalorias);
         definicion = findViewById(R.id.txtDefinicionCalculadoraCalorias);
-        mantenimiento = findViewById(R.id.txtMacrosMantenimientoCalculadoraCalorias);
+        mantenimiento = findViewById(R.id.txtMantenimientoCalculadoraCalorias);
         macrosVolumen = findViewById(R.id.txtMacrosVolumenCalculadoraCalorias);
         macrosDefinicion = findViewById(R.id.txtMacrosDefinicionCalculadoraCalorias);
         macrosMantenimiento = findViewById(R.id.txtMacrosMantenimientoCalculadoraCalorias);

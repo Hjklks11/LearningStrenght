@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.learningstrenght.calculadoras.calorias.CalculadoraCaloriasActivity;
+import com.example.learningstrenght.calculadoras.rm.CalculadoraRmActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -20,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PantallaPrincipal extends AppCompatActivity {
-    Button signOut, calculadora;
+    Button signOut, calculadoraRm, calculadoraMacros;
     FirebaseAuth mAuth;
 
     @Override
@@ -31,7 +33,8 @@ public class PantallaPrincipal extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         signOut = findViewById(R.id.btnSignOutPantallaPrincipal);
-        calculadora = findViewById(R.id.btnCalculadoraPantallaPrincipal);
+        calculadoraRm = findViewById(R.id.btnCalculadoraRmPantallaPrincipal);
+        calculadoraMacros = findViewById(R.id.btnCalculadoraMacrosPantallaPrincipal);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,10 +42,16 @@ public class PantallaPrincipal extends AppCompatActivity {
                 startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
             }
         });
-        calculadora.setOnClickListener(new View.OnClickListener() {
+        calculadoraRm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+                startActivity(new Intent(PantallaPrincipal.this, CalculadoraRmActivity.class));
+            }
+        });
+        calculadoraMacros.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
             }
         });
     }
@@ -51,8 +60,8 @@ public class PantallaPrincipal extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null){
-            signInAnonymous();
             startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+            signInAnonymous();
         }
     }
     private void signInAnonymous() {
