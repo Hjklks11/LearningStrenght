@@ -1,7 +1,18 @@
 <resources>
     <string name="app_name">LearningStrenght</string>
 
-<!--    Spinner Calculadora de macros   -->
+<!-- Spinner seleccion deporte activity_register_data -->
+    <string name="promptDeporte">Selecciona tu deporte</string>
+    <string-array name="spinnerDeporte">
+        <item>Selecciona tu deporte</item>
+        <item>Calistenia</item>
+        <item>Crossfit</item>
+        <item>Culturismo</item>
+        <item>Powerlifting</item>
+        <item>Streetlifting</item>
+    </string-array>
+
+<!-- Spinner actividad fisica activity_calculadora_calorias -->
     <string name="promptActividad">Selecciona tu nivel de actividad fisica</string>
     <string-array name="spinnerActividad">
         <item>Selecciona tu nivel de actividad fisica</item>

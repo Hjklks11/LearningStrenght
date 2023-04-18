@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Inicio de sesion con credencial correcto.");
+                            Toast.makeText(LoginActivity.this, "Inicio de sesion con credencial correcto", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             finish();
                             startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
