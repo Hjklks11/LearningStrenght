@@ -17,6 +17,9 @@
         <activity
             android:name=".calculadoras.calorias.CalculadoraCaloriasActivity"
             android:exported="false" />
+        <activity
+            android:name=".calculadoras.calorias.InfoActivity"
+            android:exported="false" />
         <!-- Calculadora rm -->
         <activity
             android:name=".calculadoras.rm.FormulasActivity"
@@ -27,16 +30,16 @@
 
         <!-- Login -->
         <activity
-            android:name=".RegisterDataActivity"
+            android:name=".login.RegisterDataActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".login.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".login.MainActivity"
             android:exported="false" />
 
         <!-- Pantalla principal -->

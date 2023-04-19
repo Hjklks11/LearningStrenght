@@ -1,4 +1,4 @@
-package com.example.learningstrenght;
+package com.example.learningstrenght.login;
 
 import static android.content.ContentValues.TAG;
 
@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.learningstrenght.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,8 +38,6 @@ public class RegisterDataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_data);
 
         inicializarEditText();
-
-        recogerDatosTv();
 
         inicializarSpinner();
 
@@ -100,6 +99,7 @@ public class RegisterDataActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                recogerDatosTv();
                 if (usuario.isEmpty() || edad.isEmpty()) {
                     Toast.makeText(RegisterDataActivity.this, "Por favor, rellene los campos marcados con un *.", Toast.LENGTH_SHORT).show();
                 } else {

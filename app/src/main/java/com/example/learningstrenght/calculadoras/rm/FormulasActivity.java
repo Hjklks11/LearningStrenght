@@ -1,12 +1,10 @@
 package com.example.learningstrenght.calculadoras.rm;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +20,7 @@ public class FormulasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_formulas);
+        setContentView(R.layout.activity_calculadora_rm_formulas);
 
         formula = getIntent().getStringExtra("Formula");
 
@@ -32,11 +30,8 @@ public class FormulasActivity extends AppCompatActivity {
         imagen = findViewById(R.id.imagenFormulas);
         txt = findViewById(R.id.txtFormulas);
 
-        //txt.setWidth(foto.getIntrinsicWidth());
         imagen.setImageDrawable(foto);
 
         layout.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class)));
-        //imagen.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class)));
-        //txt.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class)));
     }
 }

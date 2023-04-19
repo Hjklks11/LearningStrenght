@@ -8,13 +8,13 @@ import android.widget.LinearLayout;
 
 import com.example.learningstrenght.R;
 
-public class InfoCalculadoraCaloriasActivity extends AppCompatActivity {
+public class InfoActivity extends AppCompatActivity {
     private LinearLayout layoutInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_info_calculadora_calorias);
+        setContentView(R.layout.activity_calculadora_calorias_info);
 
         layoutInfo = findViewById(R.id.layoutInfoCalculadoraCalorias);
         layoutInfo.setOnClickListener(new View.OnClickListener() {

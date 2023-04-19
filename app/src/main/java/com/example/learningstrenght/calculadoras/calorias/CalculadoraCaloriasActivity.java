@@ -41,7 +41,7 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CalculadoraCaloriasActivity.this, InfoCalculadoraCaloriasActivity.class));
+                startActivity(new Intent(CalculadoraCaloriasActivity.this, InfoActivity.class));
             }
         });
 

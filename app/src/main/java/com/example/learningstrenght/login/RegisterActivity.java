@@ -1,4 +1,4 @@
-package com.example.learningstrenght;
+package com.example.learningstrenght.login;
 
 import static android.content.ContentValues.TAG;
 
@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.learningstrenght.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,9 +30,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 9001;
     private GoogleSignInClient mGoogleSignInClient;
     Button btnLogin;
@@ -41,42 +42,37 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
-        googleSignIn();
+        googleRegister();
 
-        email = findViewById(R.id.editTextCorreoLogin);
-        password = findViewById(R.id.editTextContrasenaLogin);
-        btnLogin = findViewById(R.id.btnIngresarLogin);
-        btnGoogle = findViewById(R.id.btnGoogleLogin);
+        email = findViewById(R.id.editTextCorreoRegister);
+        password = findViewById(R.id.editTextContrasenaRegister);
+        btnLogin = findViewById(R.id.btnCrearCuentaRegister);
+        btnGoogle = findViewById(R.id.btnGoogleRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String emailUser = email.getText().toString().trim();
-                /* TODO: Revisar si se mete un correo de hotmail u outlook*/
-                if (!emailUser.contains("@gmail.com")) {
-                    emailUser = emailUser.concat("@gmail.com");
-                }
                 String passUser = password.getText().toString().trim();
 
                 if (emailUser.isEmpty() || passUser.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Tienes que ingresar correo y contraseña.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Tienes que ingresar correo y contraseña.", Toast.LENGTH_SHORT).show();
                 } else {
                     mAuth.signOut();
-                    loginUserEmail(emailUser, passUser);
+                    registerUserEmail(emailUser, passUser);
                 }
             }
         });
-
         btnGoogle.setOnClickListener(view -> {
             mAuth.signOut();
-            loginUserGoogle();
+            registerUserGoogle();
         });
     }
 
-    private void googleSignIn() {
+    private void googleRegister() {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -84,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
-    private void loginUserGoogle() {
+    private void registerUserGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -113,13 +109,12 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Inicio de sesion con credencial correcto.");
-                            Toast.makeText(LoginActivity.this, "Inicio de sesion con credencial correcto", Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             finish();
-                            startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
+                            startActivity(new Intent(RegisterActivity.this, RegisterDataActivity.class));
                         } else {
                             Log.w(TAG, "Error al iniciar sesion con credencial: " + task.getException());
-                            Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -127,39 +122,30 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Fallo al iniciar sesion con credencial: " + e.getMessage());
-                        Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void loginUserEmail(String emailUser, String passUser) {
-        mAuth.signInWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    private void registerUserEmail(String emailUser, String passUser) {
+        mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    checkEmailVerified();
+                    finish();
+                    startActivity(new Intent(RegisterActivity.this, RegisterDataActivity.class));
+                    Toast.makeText(RegisterActivity.this, "Cuenta creada correctamente", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.w(TAG, "Error al iniciar sesion con email y contraseña: " + task.getException());
-                    Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterActivity.this, "error al crear cuenta", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.w(TAG, "Fallo al iniciar sesion con email y contraseña: " + e.getMessage());
-                Toast.makeText(LoginActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void checkEmailVerified() {
-        if (mAuth.getCurrentUser().isEmailVerified()) {
-            finish();
-            startActivity(new Intent(LoginActivity.this, PantallaPrincipal.class));
-            Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
-        } else {
-            mAuth.signOut();
-            Toast.makeText(LoginActivity.this, "Antes de iniciar sesion tienes que verificar tu correo.", Toast.LENGTH_SHORT).show();
-        }
     }
 }

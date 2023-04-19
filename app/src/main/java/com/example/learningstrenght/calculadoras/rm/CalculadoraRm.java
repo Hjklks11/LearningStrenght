@@ -24,10 +24,11 @@ public class CalculadoraRm {
     private Integer rmBrzycki() {
         Integer arriba = peso * 36;
         Integer abajo = 37 - repes;
-        if (abajo != 0)
+/*        if (abajo != 0)
             return arriba / abajo;
         else
-            return 0;
+            return 0;*/
+        return abajo != 0 ? arriba/abajo : 0;
     }
 
     private Integer rmEpley() {

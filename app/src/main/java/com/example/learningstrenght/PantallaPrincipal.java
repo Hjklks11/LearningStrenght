@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.learningstrenght.calculadoras.calorias.CalculadoraCaloriasActivity;
 import com.example.learningstrenght.calculadoras.rm.CalculadoraRmActivity;
+import com.example.learningstrenght.login.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
