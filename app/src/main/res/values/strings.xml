@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LearningStrenght</string>
 
-<!-- Spinner seleccion deporte activity_register_data -->
+    <!-- Spinner seleccion deporte activity_register_data -->
     <string name="promptDeporte">Selecciona tu deporte</string>
     <string-array name="spinnerDeporte">
         <item>Selecciona tu deporte</item>
@@ -12,7 +12,8 @@
         <item>Streetlifting</item>
     </string-array>
 
-<!-- Spinner actividad fisica activity_calculadora_calorias -->
+    <!-- Calculadora calorias -->
+    <!-- Spinner actividad fisica -->
     <string name="promptActividad">Selecciona tu nivel de actividad fisica</string>
     <string-array name="spinnerActividad">
         <item>Selecciona tu nivel de actividad fisica</item>
@@ -20,6 +21,17 @@
         <item>1.85-> Moderadamente activo</item>
         <item>2.2-> Muy activo</item>
         <item>2.4-> Extremadamente activo</item>
+    </string-array>
+
+    <!-- Spinner objetivo -->
+    <string name="promptObjetivo">Selecciona tu objetivo</string>
+    <string-array name="spinnerObjetivo">
+        <item>Selecciona tu objetivo</item>
+        <item>Perder peso intenso</item>
+        <item>Perder peso moderado</item>
+        <item>Mantener peso</item>
+        <item>Ganar peso moderado</item>
+        <item>Ganar peso intenso</item>
     </string-array>
 
 </resources>

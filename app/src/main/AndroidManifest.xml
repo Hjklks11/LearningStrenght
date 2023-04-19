@@ -11,18 +11,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
+
+        <!-- Calculadoras -->
+        <!-- Calculadora calorias -->
         <activity
             android:name=".calculadoras.calorias.CalculadoraCaloriasActivity"
             android:exported="false" />
+        <!-- Calculadora rm -->
         <activity
             android:name=".calculadoras.rm.FormulasActivity"
             android:exported="false" />
         <activity
             android:name=".calculadoras.rm.CalculadoraRmActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
+
+        <!-- Login -->
         <activity
             android:name=".RegisterDataActivity"
             android:exported="false" />
@@ -32,6 +35,11 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Pantalla principal -->
         <activity
             android:name=".PantallaPrincipal"
             android:exported="true">

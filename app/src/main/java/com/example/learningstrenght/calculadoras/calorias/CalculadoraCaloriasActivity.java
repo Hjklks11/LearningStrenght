@@ -1,5 +1,6 @@
 package com.example.learningstrenght.calculadoras.calorias;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,8 +23,8 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
     TextView volumen, definicion, mantenimiento, macrosVolumen, macrosDefinicion, macrosMantenimiento;
     RadioGroup radioGroup;
     RadioButton rbHombre, rbMujer;
-    Spinner spinnerActividad;
-    Button btnCalcular;
+    Spinner spinnerActividad, spinnerObjetivo;
+    Button btnInfo, btnCalcular;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +38,13 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
     }
 
     private void listeners() {
+        btnInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CalculadoraCaloriasActivity.this, InfoCalculadoraCaloriasActivity.class));
+            }
+        });
+
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -46,10 +54,11 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
                 String sexo = "";
                 if (rbHombre.isChecked()) sexo = "H"; else if (rbMujer.isChecked()) sexo = "M";
                 String sActividad = spinnerActividad.getSelectedItem().toString();
+                String objetivo = spinnerObjetivo.getSelectedItem().toString();
 
                 if (!sPeso.isEmpty() && !sAltura.isEmpty() && !sEdad.isEmpty() && !sexo.isEmpty() && spinnerActividad.getSelectedItemPosition() >= 1) {
                     CalculadoraCalorias calCal = new CalculadoraCalorias(Integer.parseInt(sPeso), Integer.parseInt(sAltura), Integer.parseInt(sEdad)
-                    , sexo, Double.parseDouble(sActividad.split("->")[0]));
+                    , sexo, Double.parseDouble(sActividad.split("->")[0]), objetivo);
                     Map<String, Macros> mapMacros = calCal.getMacros();
 
                     mostrarMacros(mapMacros);
@@ -60,15 +69,31 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
     }
 
     private void mostrarMacros(Map<String, Macros> mapMacros) {
-        volumen.setVisibility(View.VISIBLE);
-        definicion.setVisibility(View.VISIBLE);
-        mantenimiento.setVisibility(View.VISIBLE);
-        macrosVolumen.setText(mapMacros.get("Volumen").toString());
-        macrosDefinicion.setText(mapMacros.get("Definicion").toString());
-        macrosMantenimiento.setText(mapMacros.get("Mantenimiento").toString());
+        String objetivo = spinnerObjetivo.getSelectedItem().toString();
+        if (objetivo.contains("Definicion")){
+            definicion.setVisibility(View.VISIBLE);
+            macrosDefinicion.setText(mapMacros.get("Definicion").toString());
+
+        } else if (objetivo.contains("Volumen")) {
+            volumen.setVisibility(View.VISIBLE);
+            macrosVolumen.setText(mapMacros.get("Volumen").toString());
+
+        } else if (objetivo.equals("Mantenimiento")) {
+            mantenimiento.setVisibility(View.VISIBLE);
+            macrosMantenimiento.setText(mapMacros.get("Mantenimiento").toString());
+
+        } else {
+            volumen.setVisibility(View.VISIBLE);
+            definicion.setVisibility(View.VISIBLE);
+            mantenimiento.setVisibility(View.VISIBLE);
+            macrosVolumen.setText(mapMacros.get("Volumen").toString());
+            macrosDefinicion.setText(mapMacros.get("Definicion").toString());
+            macrosMantenimiento.setText(mapMacros.get("Mantenimiento").toString());
+        }
     }
 
     private void inicializarComponentes() {
+        btnInfo = findViewById(R.id.btnInfoCalculadoraCalorias);
         peso = findViewById(R.id.txtPesoCalculadoraMacros);
         altura = findViewById(R.id.txtAlturaCalculadoraMacros);
         edad = findViewById(R.id.txtEdadCalculadoraMacros);
@@ -76,6 +101,7 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
         rbHombre = findViewById(R.id.rbtnHombreCalculadoraMacros);
         rbMujer = findViewById(R.id.rbtnMujerCalculadoraMacros);
         spinnerActividad = findViewById(R.id.spinnerActividadCalculadoraMacros);
+        spinnerObjetivo = findViewById(R.id.spinnerObjetivoCalculadoraCalorias);
         btnCalcular = findViewById(R.id.btnCalcularCalculadoraMacros);
 
         volumen = findViewById(R.id.txtVolumenCalculadoraCalorias);
