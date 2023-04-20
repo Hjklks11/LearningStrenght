@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.widget.Button;
 
+import com.example.learningstrenght.BBDD.Firestore;
+import com.example.learningstrenght.Entidades.Ejercicio;
 import com.example.learningstrenght.PantallaPrincipal;
 import com.example.learningstrenght.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
         btnRegister.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
-
+        Firestore firestore = Firestore.getInstance();
+        firestore.InsertarEjercicio(new Ejercicio("pierna","sentadilla bulgara", "multiarticular", "hipertrofia"));
     }
 
     @Override
