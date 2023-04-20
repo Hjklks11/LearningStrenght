@@ -1,8 +1,10 @@
 package com.example.learningstrenght.calculadoras.calorias;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -48,6 +50,8 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideKeyboard(view);
+
                 String sPeso = peso.getText().toString().trim();
                 String sAltura = altura.getText().toString().trim();
                 String sEdad = edad.getText().toString().trim();
@@ -110,5 +114,9 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
         macrosVolumen = findViewById(R.id.txtMacrosVolumenCalculadoraCalorias);
         macrosDefinicion = findViewById(R.id.txtMacrosDefinicionCalculadoraCalorias);
         macrosMantenimiento = findViewById(R.id.txtMacrosMantenimientoCalculadoraCalorias);
+    }
+    private void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

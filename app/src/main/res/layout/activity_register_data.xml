@@ -84,8 +84,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:suffixText="kg"
-        app:placeholderText="peso"
-        android:hint="peso kg">
+        app:placeholderText="peso">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPesoRegisterData"
             android:layout_width="match_parent"
@@ -107,8 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:suffixText="cm"
-        app:placeholderText="altura"
-        android:hint="altura cm">
+        app:placeholderText="altura">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtAlturaRegisterData"
             android:layout_width="match_parent"
