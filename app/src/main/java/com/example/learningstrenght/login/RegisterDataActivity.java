@@ -19,13 +19,14 @@ import android.widget.Toast;
 import com.example.learningstrenght.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterDataActivity extends AppCompatActivity {
-    private EditText tVUsuario, tVEdad, tVPeso, tVAltura, tVRm1, tVRm2, tVRm3;
+public class RegisterDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    private TextInputEditText tVUsuario, tVEdad, tVPeso, tVAltura, tVRm1, tVRm2, tVRm3;
     private Spinner spinnerDeporte;
     private LinearLayout layoutRm;
     private Button btnEntrar;
@@ -42,46 +43,6 @@ public class RegisterDataActivity extends AppCompatActivity {
         inicializarSpinner();
 
         botonEntrar();
-    }
-
-    private void inicializarSpinner() {
-        layoutRm = findViewById(R.id.layoutRM);
-        spinnerDeporte = findViewById(R.id.spinnerDeporteRegisterData);
-        spinnerDeporte.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (!spinnerDeporte.getSelectedItem().toString().equals("Selecciona tu deporte")) {
-                    switch (spinnerDeporte.getSelectedItem().toString()) {
-                        case "Calistenia":
-                            setRm("Dominadas", "Fondos", "Flexiones", "repes");
-                            layoutRm.setVisibility(View.VISIBLE);
-                            break;
-                        case "Crossfit":
-                            Toast.makeText(RegisterDataActivity.this, "Para eso vete al zoo", Toast.LENGTH_LONG).show();
-                            try {
-                                Thread.sleep(3000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            finishAffinity();
-                            break;
-                        case "Culturismo":
-                            layoutRm.setVisibility(View.GONE);
-                            break;
-                        case "Powerlifting":
-                            setRm("Press banca", "Peso muerto", "Sentadilla", "kg");
-                            layoutRm.setVisibility(View.VISIBLE);
-                            break;
-                        case "Streetlifting":
-                            setRm("Dominadas", "Fondos", "Sentadilla", "kg");
-                            layoutRm.setVisibility(View.VISIBLE);
-                            break;
-                        default:
-                            layoutRm.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
     }
 
     private void setRm(String rm1, String rm2, String rm3, String tipo) {
@@ -139,7 +100,7 @@ public class RegisterDataActivity extends AppCompatActivity {
         mapUsuario.put("Peso", peso);
         mapUsuario.put("Altura", altura);
         // TODO: si el deporte es culturismo los rm seran nulos
-        if (!deporte.equals("Selecciona tu deporte")){
+        if (!deporte.equals("Selecciona tu deporte")) {
             mapUsuario.put("Deporte", deporte);
             mapUsuario.put("Rm1", rm1);
             mapUsuario.put("Rm2", rm2);
@@ -166,5 +127,48 @@ public class RegisterDataActivity extends AppCompatActivity {
         tVRm1 = findViewById(R.id.txtRmSentadillaRegisterData);
         tVRm2 = findViewById(R.id.txtRmBancaRegisterData);
         tVRm3 = findViewById(R.id.txtRmMuertoRegisterData);
+    }
+
+    private void inicializarSpinner() {
+        layoutRm = findViewById(R.id.layoutRM);
+        spinnerDeporte = findViewById(R.id.spinnerDeporteRegisterData);
+        spinnerDeporte.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (spinnerDeporte.getSelectedItem().toString()) {
+            case "Calistenia":
+                setRm("Dominadas", "Fondos", "Flexiones", "repes");
+                layoutRm.setVisibility(View.VISIBLE);
+                break;
+            case "Crossfit":
+                Toast.makeText(RegisterDataActivity.this, "Para eso vete al zoo", Toast.LENGTH_LONG).show();
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                finishAffinity();
+                break;
+            case "Culturismo":
+                layoutRm.setVisibility(View.GONE);
+                break;
+            case "Powerlifting":
+                setRm("Press banca", "Peso muerto", "Sentadilla", "kg");
+                layoutRm.setVisibility(View.VISIBLE);
+                break;
+            case "Streetlifting":
+                setRm("Dominadas", "Fondos", "Sentadilla", "kg");
+                layoutRm.setVisibility(View.VISIBLE);
+                break;
+            default:
+                layoutRm.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        layoutRm.setVisibility(View.GONE);
     }
 }

@@ -43,10 +43,14 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/txtNombreUsuarioRegisterData"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtNombreUsuarioRegisterData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView7"
@@ -57,11 +61,15 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/txtEdadRegisterData"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
+        android:layout_height="wrap_content">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtEdadRegisterData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView9"
@@ -72,12 +80,19 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/txtPesoRegisterData"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="                     kg"
-        android:inputType="number" />
+        app:suffixText="kg"
+        app:placeholderText="peso"
+        android:hint="peso kg">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPesoRegisterData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:id="@+id/textView11"
@@ -88,12 +103,18 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/txtAlturaRegisterData"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="                     cm"
-        android:inputType="number" />
+        app:suffixText="cm"
+        app:placeholderText="altura"
+        android:hint="altura cm">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtAlturaRegisterData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView12"

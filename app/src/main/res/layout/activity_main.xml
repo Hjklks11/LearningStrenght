@@ -13,11 +13,6 @@
         android:layout_height="400dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic[7]" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,7 +26,8 @@
                 android:backgroundTint="#288419"
                 android:text="Crear Cuenta"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,12 +41,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:foregroundTint="#8A8A8A"
-                    android:gravity="center"
+                    android:gravity="right|center_vertical"
                     android:text="¿Ya eres miembro?"
-                    android:textAlignment="textEnd"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#676767" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <Button
                     android:id="@+id/btnLogin"
@@ -58,7 +51,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:backgroundTint="@color/white"
+                    android:backgroundTint="#00FFFFFF"
                     android:text="Inicia sesion"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -66,6 +59,4 @@
             </LinearLayout>
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
 </LinearLayout>

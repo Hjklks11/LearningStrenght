@@ -14,6 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.MaterialComponents" parent="Theme.MaterialComponents.DayNight.NoActionBar"></style>
-    <style name="Theme.Material3" parent="Theme.Material3.DayNight.NoActionBar"></style>
+    <style name="Theme.MaterialComponents" parent="Theme.MaterialComponents.Light.NoActionBar"></style>
+    <style name="Theme.Material3" parent="Theme.Material3.Light.NoActionBar"></style>
 </resources>

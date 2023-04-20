@@ -24,6 +24,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     Button btnLogin;
     SignInButton btnGoogle;
-    EditText email, password;
+    TextInputLayout tilEmail, tilPassword;
+    TextInputEditText email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextContrasenaRegister);
         btnLogin = findViewById(R.id.btnCrearCuentaRegister);
         btnGoogle = findViewById(R.id.btnGoogleRegister);
+        tilEmail = findViewById(R.id.tilCorreoRegister);
+        tilPassword = findViewById(R.id.tilContrasenaRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +74,28 @@ public class RegisterActivity extends AppCompatActivity {
         btnGoogle.setOnClickListener(view -> {
             mAuth.signOut();
             registerUserGoogle();
+        });
+        email.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b && !email.getText().toString().trim().contains("@gmail.com")) {
+                    tilEmail.setError("Esa no es una direccion de correo valida.");
+                } else {
+                    tilEmail.setError(null);
+                }
+            }
+        });
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b && password.getText().toString().trim().length() < 6) {
+                    tilPassword.setHelperTextEnabled(false);
+                    tilPassword.setError("La contraseña tiene que tener al menos 6 caracteres.");
+                } else {
+                    tilPassword.setError(null);
+                    tilPassword.setHelperTextEnabled(true);
+                }
+            }
         });
     }
 

@@ -6,52 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity">
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <EditText
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="Correo"
+            app:boxBackgroundMode="filled">
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextCorreoLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Correo"
-                android:inputType="textPersonName" />
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:hint="Contraseña"
+            app:boxBackgroundMode="filled"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTintMode="src_atop">
+
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextContrasenaLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Contraseña"
-                android:inputType="textPersonName" />
+                android:singleLine="true"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btnIngresarLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingresar" />
+        <Button
+            android:id="@+id/btnIngresarLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingresar" />
 
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/btnGoogleLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btnGoogleLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
