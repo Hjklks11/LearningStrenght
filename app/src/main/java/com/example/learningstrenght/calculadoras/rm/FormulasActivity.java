@@ -10,12 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.learningstrenght.R;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.textview.MaterialTextView;
 
 public class FormulasActivity extends AppCompatActivity {
     LinearLayout layout;
-    ImageView imagen;
-    TextView txt;
+    ShapeableImageView imagen;
+    MaterialTextView txt;
     String formula;
+    String[] datosUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,7 @@ public class FormulasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_calculadora_rm_formulas);
 
         formula = getIntent().getStringExtra("Formula");
+        datosUsuario = getIntent().getStringArrayExtra("DatosUsuario");
 
         Drawable foto = Drawable.createFromPath("@drawable/" + formula);
 
@@ -32,6 +36,6 @@ public class FormulasActivity extends AppCompatActivity {
 
         imagen.setImageDrawable(foto);
 
-        layout.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class)));
+        layout.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class).putExtra("DatosUsuario", datosUsuario)));
     }
 }

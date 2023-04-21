@@ -52,6 +52,8 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
             public void onClick(View view) {
                 hideKeyboard(view);
 
+                resetearCalorias();
+
                 String sPeso = peso.getText().toString().trim();
                 String sAltura = altura.getText().toString().trim();
                 String sEdad = edad.getText().toString().trim();
@@ -72,26 +74,47 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
         });
     }
 
+    private void resetearCalorias() {
+        volumen.setVisibility(View.GONE);
+        macrosVolumen.setVisibility(View.GONE);
+        definicion.setVisibility(View.GONE);
+        macrosDefinicion.setVisibility(View.GONE);
+        mantenimiento.setVisibility(View.GONE);
+        macrosMantenimiento.setVisibility(View.GONE);
+    }
+
     private void mostrarMacros(Map<String, Macros> mapMacros) {
         String objetivo = spinnerObjetivo.getSelectedItem().toString();
-        if (objetivo.contains("Definicion")){
+        if (objetivo.contains("Perder peso")){
             definicion.setVisibility(View.VISIBLE);
+            definicion.setText(objetivo);
+            macrosDefinicion.setVisibility(View.VISIBLE);
             macrosDefinicion.setText(mapMacros.get("Definicion").toString());
 
-        } else if (objetivo.contains("Volumen")) {
+        } else if (objetivo.contains("Ganar peso")) {
             volumen.setVisibility(View.VISIBLE);
+            volumen.setText(objetivo);
+            macrosVolumen.setVisibility(View.VISIBLE);
             macrosVolumen.setText(mapMacros.get("Volumen").toString());
 
-        } else if (objetivo.equals("Mantenimiento")) {
+        } else if (objetivo.equals("Mantener peso")) {
             mantenimiento.setVisibility(View.VISIBLE);
+            mantenimiento.setText(objetivo);
+            macrosMantenimiento.setVisibility(View.VISIBLE);
             macrosMantenimiento.setText(mapMacros.get("Mantenimiento").toString());
 
         } else {
             volumen.setVisibility(View.VISIBLE);
+            volumen.setText("Volumen");
             definicion.setVisibility(View.VISIBLE);
+            definicion.setText("Definicion");
             mantenimiento.setVisibility(View.VISIBLE);
+            mantenimiento.setText("Mantenimiento");
+            macrosVolumen.setVisibility(View.VISIBLE);
             macrosVolumen.setText(mapMacros.get("Volumen").toString());
+            macrosDefinicion.setVisibility(View.VISIBLE);
             macrosDefinicion.setText(mapMacros.get("Definicion").toString());
+            macrosMantenimiento.setVisibility(View.VISIBLE);
             macrosMantenimiento.setText(mapMacros.get("Mantenimiento").toString());
         }
     }

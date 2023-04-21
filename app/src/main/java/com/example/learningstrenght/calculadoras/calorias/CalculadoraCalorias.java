@@ -1,5 +1,7 @@
 package com.example.learningstrenght.calculadoras.calorias;
 
+import android.widget.Toast;
+
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;

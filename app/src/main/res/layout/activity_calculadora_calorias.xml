@@ -152,11 +152,10 @@
                 android:id="@+id/txtVolumenCalculadoraCalorias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Volumen"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtMacrosVolumenCalculadoraCalorias"
@@ -169,11 +168,10 @@
                 android:id="@+id/txtDefinicionCalculadoraCalorias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Definicion"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtMacrosDefinicionCalculadoraCalorias"
@@ -186,11 +184,10 @@
                 android:id="@+id/txtMantenimientoCalculadoraCalorias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Mantenimiento"
+                android:text=""
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:visibility="invisible" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtMacrosMantenimientoCalculadoraCalorias"

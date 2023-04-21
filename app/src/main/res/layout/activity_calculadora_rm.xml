@@ -31,43 +31,66 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/txtPesoCalculadoraRm"
-        android:layout_width="126dp"
-        android:layout_height="40dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="peso kg"
-        android:inputType="number"
+        app:boxBackgroundMode="filled"
+        android:hint="peso"
+        app:hintAnimationEnabled="false"
+        app:suffixText=" kg"
         app:layout_constraintBottom_toTopOf="@+id/txtBannerCalculadoraRm"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPesoCalculadoraRm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:textAlignment="textEnd"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
-        android:id="@+id/txtRpsCalculadoraRm"
-        android:layout_width="126dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRepes"
+        android:minWidth="120dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="nº repeticiones"
-        android:inputType="number"
+        app:boxBackgroundMode="filled"
+        android:hint="repes"
+        app:hintAnimationEnabled="false"
+        app:suffixText=" repes"
+        app:expandedHintEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/txtBannerCalculadoraRm"
-        app:layout_constraintStart_toEndOf="@+id/txtPesoCalculadoraRm" />
+        app:layout_constraintStart_toEndOf="@+id/tilPeso">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtRpsCalculadoraRm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:textAlignment="textEnd"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btnCalcularCalculadoraRm"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Calcular"
+        app:icon="@drawable/baseline_calculate_24"
         app:layout_constraintBottom_toTopOf="@+id/txtBannerCalculadoraRm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtRpsCalculadoraRm" />
+        app:layout_constraintStart_toEndOf="@+id/tilRepes"/>
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -76,44 +99,49 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.657"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=" La fórmula que mejor predice cuando se realizan menos de 10 repeticiones es la dada por Brzycki, mientras que para más de 10 repeticiones es la llamada Epley la que predice mejor resultado." />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtBrzyckiCalculadoraRm"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Brzicki ->"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtEpleyCalculadoraRm"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="Epley ->"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 
     <View
         android:id="@+id/divider"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/txtRpsCalculadoraRm"
+        app:layout_constraintBottom_toTopOf="@+id/tilRepes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

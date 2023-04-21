@@ -11,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -124,9 +123,9 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         tVEdad = findViewById(R.id.txtEdadRegisterData);
         tVPeso = findViewById(R.id.txtPesoRegisterData);
         tVAltura = findViewById(R.id.txtAlturaRegisterData);
-        tVRm1 = findViewById(R.id.txtRmSentadillaRegisterData);
-        tVRm2 = findViewById(R.id.txtRmBancaRegisterData);
-        tVRm3 = findViewById(R.id.txtRmMuertoRegisterData);
+        tVRm1 = findViewById(R.id.txtRm1RegisterData);
+        tVRm2 = findViewById(R.id.txtRm2RegisterData);
+        tVRm3 = findViewById(R.id.txtRm3RegisterData);
     }
 
     private void inicializarSpinner() {
