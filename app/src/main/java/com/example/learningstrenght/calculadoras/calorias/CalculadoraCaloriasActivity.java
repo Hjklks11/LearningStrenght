@@ -16,17 +16,22 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.learningstrenght.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.Map;
 
 public class CalculadoraCaloriasActivity extends AppCompatActivity {
 
-    EditText peso, altura, edad;
-    TextView volumen, definicion, mantenimiento, macrosVolumen, macrosDefinicion, macrosMantenimiento;
+    TextInputLayout tilPeso, tilAltura, tilEdad;
+    TextInputEditText peso, altura, edad;
+    MaterialTextView volumen, definicion, mantenimiento, macrosVolumen, macrosDefinicion, macrosMantenimiento;
     RadioGroup radioGroup;
     RadioButton rbHombre, rbMujer;
     Spinner spinnerActividad, spinnerObjetivo;
-    Button btnInfo, btnCalcular;
+    MaterialButton btnInfo, btnCalcular;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +75,45 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
                     mostrarMacros(mapMacros);
                 }
 
+            }
+        });
+
+        peso.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b) {
+                    tilPeso.setHint("");
+                } else {
+                    if (peso.getText().toString().isEmpty()) {
+                        tilPeso.setHint("Peso");
+                    }
+                }
+            }
+        });
+
+        altura.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b) {
+                    tilAltura.setHint("");
+                } else {
+                    if (altura.getText().toString().isEmpty()) {
+                        tilAltura.setHint("Altura");
+                    }
+                }
+            }
+        });
+
+        edad.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b) {
+                    tilEdad.setHint("");
+                } else {
+                    if (edad.getText().toString().isEmpty()) {
+                        tilEdad.setHint("Edad");
+                    }
+                }
             }
         });
     }
@@ -121,8 +165,11 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
 
     private void inicializarComponentes() {
         btnInfo = findViewById(R.id.btnInfoCalculadoraCalorias);
+        tilPeso = findViewById(R.id.tilPesoCalculadoraMacros);
         peso = findViewById(R.id.txtPesoCalculadoraMacros);
+        tilAltura = findViewById(R.id.tilAlturaCalculadoraMacros);
         altura = findViewById(R.id.txtAlturaCalculadoraMacros);
+        tilEdad = findViewById(R.id.tilEdadCalculadoraMacros);
         edad = findViewById(R.id.txtEdadCalculadoraMacros);
         radioGroup = findViewById(R.id.radioGroupCalculadoraMacros);
         rbHombre = findViewById(R.id.rbtnHombreCalculadoraMacros);

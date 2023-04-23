@@ -3,78 +3,228 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView10"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Calculo de macros"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toStartOf="@+id/btnInfoCalculadoraCalorias"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnInfoCalculadoraCalorias"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#00FFFFFF"
         android:foreground="@android:drawable/ic_menu_info_details"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/txtPesoCalculadoraMacros"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Peso kgs"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerActividadCalculadoraMacros"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtVolumenCalculadoraCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtMacrosVolumenCalculadoraCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtDefinicionCalculadoraCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtMacrosDefinicionCalculadoraCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtMantenimientoCalculadoraCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txtMacrosMantenimientoCalculadoraCalorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/txtAlturaCalculadoraMacros"
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Altura cm"
-        android:inputType="number"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/spinnerActividadCalculadoraMacros"
-        app:layout_constraintStart_toEndOf="@+id/txtPesoCalculadoraMacros" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <EditText
-        android:id="@+id/txtEdadCalculadoraMacros"
-        android:layout_width="70dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPesoCalculadoraMacros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:hint="Peso"
+            android:minWidth="100dp"
+            app:boxBackgroundMode="filled"
+            app:hintAnimationEnabled="false"
+            app:suffixText=" kg">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtPesoCalculadoraMacros"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAlignment="textEnd" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilAlturaCalculadoraMacros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:hint="Altura"
+            android:minWidth="100dp"
+            app:boxBackgroundMode="filled"
+            app:hintAnimationEnabled="false"
+            app:suffixText=" cm">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtAlturaCalculadoraMacros"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAlignment="textEnd" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEdadCalculadoraMacros"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:hint="Edad"
+            android:minWidth="100dp"
+            app:boxBackgroundMode="filled"
+            app:hintAnimationEnabled="false"
+            app:suffixText=" años">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEdadCalculadoraMacros"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textAlignment="textEnd" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinnerActividadCalculadoraMacros"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Edad"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerActividadCalculadoraMacros"
-        app:layout_constraintStart_toEndOf="@+id/txtAlturaCalculadoraMacros" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:entries="@array/spinnerActividad"
+        android:prompt="@string/promptActividad"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerObjetivoCalculadoraCalorias"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerObjetivoCalculadoraCalorias"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:entries="@array/spinnerObjetivo"
+        android:prompt="@string/promptObjetivo"
+        app:layout_constraintBottom_toTopOf="@+id/btnCalcularCalculadoraMacros"
+        app:layout_constraintEnd_toStartOf="@+id/radioGroupCalculadoraMacros"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RadioGroup
         android:id="@+id/radioGroupCalculadoraMacros"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:showDividers="middle"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerActividadCalculadoraMacros"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtEdadCalculadoraMacros">
+        app:layout_constraintBottom_toTopOf="@+id/btnCalcularCalculadoraMacros"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <RadioButton
             android:id="@+id/rbtnHombreCalculadoraMacros"
@@ -92,121 +242,15 @@
 
     </RadioGroup>
 
-    <Spinner
-        android:id="@+id/spinnerActividadCalculadoraMacros"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
-        android:entries="@array/spinnerActividad"
-        android:prompt="@string/promptActividad"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerObjetivoCalculadoraCalorias"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinnerObjetivoCalculadoraCalorias"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
-        android:entries="@array/spinnerObjetivo"
-        android:prompt="@string/promptObjetivo"
-        app:layout_constraintBottom_toTopOf="@+id/btnCalcularCalculadoraMacros"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCalcularCalculadoraMacros"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:text="Calcular macros"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/divider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/txtVolumenCalculadoraCalorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtMacrosVolumenCalculadoraCalorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/txtDefinicionCalculadoraCalorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtMacrosDefinicionCalculadoraCalorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/txtMantenimientoCalculadoraCalorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtMacrosMantenimientoCalculadoraCalorias"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </ScrollView>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="64dp"
-        android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerActividadCalculadoraMacros"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

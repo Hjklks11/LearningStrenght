@@ -54,7 +54,7 @@ public class CalculadoraRmActivity extends AppCompatActivity {
                     tilPeso.setHint("");
                 } else {
                     if (peso.getText().toString().isEmpty()) {
-                        peso.setHint("peso kg");
+                        tilPeso.setHint("Peso");
                     }
                 }
             }
@@ -67,7 +67,7 @@ public class CalculadoraRmActivity extends AppCompatActivity {
                     tilRepes.setHint("");
                 } else {
                     if (repes.getText().toString().isEmpty()) {
-                        tilRepes.setHint("repes");
+                        tilRepes.setHint("Repes");
                     }
                 }
             }
