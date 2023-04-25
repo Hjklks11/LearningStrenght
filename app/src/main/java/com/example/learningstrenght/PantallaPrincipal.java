@@ -117,6 +117,18 @@ public class PantallaPrincipal extends AppCompatActivity implements NavigationVi
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (item.getTitle().equals("Calculadora Rm")) {
+            startActivity(new Intent(PantallaPrincipal.this, CalculadoraRmActivity.class));
+        }
+
+        if (item.getTitle().equals("Calculadora Macros")) {
+            startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
+        }
+
+        if (item.getTitle().equals("Log Out")) {
+            mAuth.signOut();
+            startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+        }
         return false;
     }
 
