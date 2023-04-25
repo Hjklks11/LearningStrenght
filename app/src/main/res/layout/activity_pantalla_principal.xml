@@ -29,7 +29,10 @@
                         android:id="@+id/toolbarPantallaPrincipal"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
-                        android:background="@color/white" />
+                        android:background="@color/white"
+                        app:title="Learning Strenght"
+                        app:navigationIcon="@drawable/baseline_assist_walker_24"
+                        app:menu="@menu/nav_menu"/>
 
                 </com.google.android.material.appbar.AppBarLayout>
 
