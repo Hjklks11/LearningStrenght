@@ -1,139 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context=".PerfilUsuarioActivity"
-    android:padding="16dp">
 
-    <ScrollView
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary"
+            android:orientation="horizontal">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAtrasPerfilUsuario"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="?attr/actionModeCloseDrawable"
+                app:backgroundTint="@android:color/transparent"
+                app:elevation="0dp"
+                app:fabCustomSize="40dp" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Editar usuario"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="34sp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAceptarPerfilUsuario"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/outline_check_24"
+                app:backgroundTint="@android:color/transparent"
+                app:elevation="0dp"
+                app:fabCustomSize="40dp" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context=".PerfilUsuarioActivity">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/fotoPerfilUsuario"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
-                android:layout_marginTop="16dp"
-                android:padding="4dp"
-                android:scaleType="centerCrop"
-                app:shapeAppearanceOverlay="@style/roundedImageViewrounded"
-                app:srcCompat="@drawable/cbumperro"
-                app:strokeColor="@color/black"
-                app:strokeWidth="0dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#0000FF00"
-                android:text="Cambiar foto de perfil"
-                android:textColor="#3C8521" />
-
-            <View
-                android:id="@+id/divider2"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:background="?android:attr/listDivider" />
+                android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNombreUsuarioPerfilUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="Nombre de usuario"
-                app:startIconDrawable="@drawable/baseline_alternate_email_24">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtNombreUsuarioPerfilUsuario"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNombrePerfilUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="Nombre"
-                app:startIconDrawable="@drawable/baseline_person_outline_24">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtNombrePerfilUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/fotoPerfilUsuario"
+                        android:layout_width="128dp"
+                        android:layout_height="128dp"
+                        android:layout_marginTop="16dp"
+                        android:padding="4dp"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearanceOverlay="@style/roundedImageViewrounded"
+                        app:srcCompat="@drawable/cbumperro"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="0dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmailPerfilUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="Email"
-                app:startIconDrawable="@drawable/baseline_mail_outline_24">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtEmailPerfilUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#0000FF00"
+                        android:text="Cambiar foto de perfil"
+                        android:textColor="#3C8521" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilFechaNacPerfilusuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:hint="Fecha de nacimiento"
-                app:startIconDrawable="@drawable/baseline_calendar_today_24">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtFechaNacPerfilusuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="?android:attr/listDivider" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNombreUsuarioPerfilUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Nombre de usuario"
+                        app:startIconDrawable="@drawable/baseline_alternate_email_24">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPesoPerfilusuario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="4dp"
-                android:hint="Altura"
-                app:suffixText=" cm">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtPesoPerfilusuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtNombreUsuarioPerfilUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilAlturaPerfilusuario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginLeft="4dp"
-                android:hint="Peso"
-                app:suffixText=" kg">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtAlturaPerfilusuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilNombrePerfilUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Nombre"
+                        app:startIconDrawable="@drawable/baseline_person_outline_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtNombrePerfilUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilEmailPerfilUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Email"
+                        app:startIconDrawable="@drawable/baseline_mail_outline_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtEmailPerfilUsuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilFechaNacPerfilusuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:hint="Fecha de nacimiento"
+                        app:startIconDrawable="@drawable/baseline_calendar_today_24">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/txtFechaNacPerfilusuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilPesoPerfilusuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:hint="Altura"
+                            app:suffixText=" cm">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtPesoPerfilusuario"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilAlturaPerfilusuario"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="4dp"
+                            android:layout_weight="1"
+                            android:hint="Peso"
+                            app:suffixText=" kg">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/txtAlturaPerfilusuario"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
