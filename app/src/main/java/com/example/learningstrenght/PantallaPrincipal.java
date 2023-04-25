@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PantallaPrincipal extends AppCompatActivity {
-    Button signOut, calculadoraRm, calculadoraMacros;
+    Button signOut, calculadoraRm, calculadoraMacros, perfilUsuario;
     FirebaseAuth mAuth;
 
     @Override
@@ -36,6 +36,7 @@ public class PantallaPrincipal extends AppCompatActivity {
         signOut = findViewById(R.id.btnSignOutPantallaPrincipal);
         calculadoraRm = findViewById(R.id.btnCalculadoraRmPantallaPrincipal);
         calculadoraMacros = findViewById(R.id.btnCalculadoraMacrosPantallaPrincipal);
+        perfilUsuario = findViewById(R.id.btnPerfilUsuarioPantallaPrincipal);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,6 +54,12 @@ public class PantallaPrincipal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
+            }
+        });
+        perfilUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PantallaPrincipal.this, PerfilUsuarioActivity.class));
             }
         });
     }
