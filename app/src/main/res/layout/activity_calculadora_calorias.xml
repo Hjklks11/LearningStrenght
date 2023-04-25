@@ -226,6 +226,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCalcularCalculadoraMacros"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sexo:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="18dp"/>
+
         <RadioButton
             android:id="@+id/rbtnHombreCalculadoraMacros"
             android:layout_width="match_parent"
