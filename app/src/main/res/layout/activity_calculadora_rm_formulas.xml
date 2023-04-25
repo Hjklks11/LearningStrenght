@@ -11,7 +11,8 @@
     android:gravity="center"
     android:orientation="vertical"
     app:layout_anchorGravity="center"
-    tools:context=".calculadoras.rm.FormulasActivity">
+    tools:context=".calculadoras.rm.FormulasActivity"
+    android:theme="@style/Theme.AppCompat.Translucent">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txtFormulas"
@@ -21,7 +22,8 @@
         android:layout_marginBottom="5dp"
         android:foregroundGravity="center"
         android:background="@android:color/transparent"
-        android:text="r= número de repeticiones realizadas y \nw= peso con el que se han realizado." />
+        android:text="r= número de repeticiones realizadas y \nw= peso con el que se han realizado."
+        android:textColor="@color/black"/>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imagenFormulas"

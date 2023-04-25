@@ -9,7 +9,8 @@
     android:backgroundTint="#00FFFFFF"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".calculadoras.calorias.InfoActivity">
+    tools:context=".calculadoras.calorias.InfoActivity"
+    android:theme="@style/Theme.AppCompat.Translucent">
 
     <ImageView
         android:id="@+id/imageView"
