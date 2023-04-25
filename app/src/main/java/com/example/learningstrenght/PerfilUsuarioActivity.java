@@ -27,6 +27,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         user.getMetadata().getCreationTimestamp();
     }
 
+    //Este metodo va en el onClickListener del txtDate
     private void showDatePickerDialog() {
         MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Fecha nacimiento").build();
 
