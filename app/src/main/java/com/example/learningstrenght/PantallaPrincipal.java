@@ -3,11 +3,15 @@ package com.example.learningstrenght;
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,11 +22,15 @@ import com.example.learningstrenght.login.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class PantallaPrincipal extends AppCompatActivity {
+public class PantallaPrincipal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
     Button signOut, calculadoraRm, calculadoraMacros;
     FirebaseAuth mAuth;
 
@@ -33,9 +41,31 @@ public class PantallaPrincipal extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        toolbar = findViewById(R.id.toolbarPantallaPrincipal);
+        setSupportActionBar(toolbar);
+
+        drawerLayout = findViewById(R.id.layoutPantallaPrincipal);
+        navigationView = findViewById(R.id.navViewPantallaPrincipal);
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, R.string.openNavDrawer, R.string.closeNavDrawer
+        );
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+        findViewById();
+        listenersBotones();
+    }
+
+    private void findViewById() {
         signOut = findViewById(R.id.btnSignOutPantallaPrincipal);
         calculadoraRm = findViewById(R.id.btnCalculadoraRmPantallaPrincipal);
         calculadoraMacros = findViewById(R.id.btnCalculadoraMacrosPantallaPrincipal);
+    }
+
+    private void listenersBotones() {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +86,7 @@ public class PantallaPrincipal extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -82,5 +113,15 @@ public class PantallaPrincipal extends AppCompatActivity {
                 Log.w(TAG, "MainActivity. " + e.getMessage());
             }
         });
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

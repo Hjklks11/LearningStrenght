@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">LearningStrenght</string>
+    
+    <!-- Navigation Drawer Pantalla Principal -->
+    <string name="openNavDrawer">Navigation Drawer Open</string>
+    <string name="closeNavDrawer">Navigation Drawer Close</string>
 
     <!-- Spinner seleccion deporte activity_register_data -->
     <string name="promptDeporte">Selecciona tu deporte</string>
