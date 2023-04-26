@@ -23,15 +23,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class PantallaPrincipal extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    //Navigation Drawer
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    Button signOut, calculadoraRm, calculadoraMacros;
+    private MaterialTextView txtUsuario, txtEmail;
+
     FirebaseAuth mAuth;
 
     @Override
@@ -41,6 +44,10 @@ public class PantallaPrincipal extends AppCompatActivity implements NavigationVi
 
         mAuth = FirebaseAuth.getInstance();
 
+        inicializarNavigationDrawer();
+    }
+
+    private void inicializarNavigationDrawer() {
         toolbar = findViewById(R.id.toolbarPantallaPrincipal);
         setSupportActionBar(toolbar);
 
@@ -48,54 +55,60 @@ public class PantallaPrincipal extends AppCompatActivity implements NavigationVi
         navigationView = findViewById(R.id.navViewPantallaPrincipal);
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-            this, drawerLayout, toolbar, R.string.openNavDrawer, R.string.closeNavDrawer
+                this, drawerLayout, toolbar, R.string.openNavDrawer, R.string.closeNavDrawer
         );
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        findViewById();
-        listenersBotones();
-    }
+        txtUsuario = findViewById(R.id.txtUsuarioNavHeader);
+        txtEmail = findViewById(R.id.txtEmailNavHeader);
 
-    private void findViewById() {
-        signOut = findViewById(R.id.btnSignOutPantallaPrincipal);
-        calculadoraRm = findViewById(R.id.btnCalculadoraRmPantallaPrincipal);
-        calculadoraMacros = findViewById(R.id.btnCalculadoraMacrosPantallaPrincipal);
-    }
-
-    private void listenersBotones() {
-        signOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.signOut();
-                startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
-            }
-        });
-        calculadoraRm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PantallaPrincipal.this, CalculadoraRmActivity.class));
-            }
-        });
-        calculadoraMacros.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
-            }
-        });
+        //TODO: poner foto perfil usuario
+        txtUsuario.setText(mAuth.getCurrentUser().getDisplayName());
+        txtEmail.setText(mAuth.getCurrentUser().getEmail());
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null){
-            startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
-            signInAnonymous();
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+/*        if (item.getTitle().equals("Calculadora Rm")) {
+            startActivity(new Intent(PantallaPrincipal.this, CalculadoraRmActivity.class));
         }
+
+        if (item.getTitle().equals("Calculadora Macros")) {
+            startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
+        }
+        if (item.getTitle().equals("Ajustes de Usuario")) {
+            startActivity(new Intent(PantallaPrincipal.this, PerfilUsuarioActivity.class));
+        }
+        if (item.getTitle().equals("Log Out")) {
+            mAuth.signOut();
+            startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+        }*/
+        switch (item.getTitle().toString()) {
+            case "Calculadora Rm":
+                startActivity(new Intent(PantallaPrincipal.this, CalculadoraRmActivity.class));
+                break;
+            case "Calculadora Macros":
+                startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
+                break;
+            case "Ajustes de Usuario":
+                startActivity(new Intent(PantallaPrincipal.this, PerfilUsuarioActivity.class));
+            case "Log Out":
+                mAuth.signOut();
+                startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+                break;
+        }
+        return true;
+        //return false;
     }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
+    }
+
     private void signInAnonymous() {
         mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -116,24 +129,13 @@ public class PantallaPrincipal extends AppCompatActivity implements NavigationVi
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        if (item.getTitle().equals("Calculadora Rm")) {
-            startActivity(new Intent(PantallaPrincipal.this, CalculadoraRmActivity.class));
-        }
-
-        if (item.getTitle().equals("Calculadora Macros")) {
-            startActivity(new Intent(PantallaPrincipal.this, CalculadoraCaloriasActivity.class));
-        }
-
-        if (item.getTitle().equals("Log Out")) {
-            mAuth.signOut();
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null){
             startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+            signInAnonymous();
         }
-        return false;
     }
 
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-        super.onPointerCaptureChanged(hasCapture);
-    }
 }

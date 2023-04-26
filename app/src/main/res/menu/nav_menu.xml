@@ -9,7 +9,6 @@
                 android:icon="@drawable/outline_check_24"/>
             <item android:title="Rutinas predeterminadas"
                 android:icon="@drawable/outline_check_24"/>
-
         </menu>
     </item>
 
@@ -19,13 +18,12 @@
                 android:icon="@drawable/baseline_calculate_24"/>
             <item android:title="Calculadora Macros"
                 android:icon="@drawable/baseline_calculate_24"/>
-
         </menu>
     </item>
 
     <item android:title="App">
         <menu>
-            <item android:title="Settings"
+            <item android:title="Ajustes de Usuario"
                 android:icon="@drawable/baseline_person_outline_24"/>
             <item android:title="Log Out"
                 android:icon="@drawable/baseline_person_outline_24"/>
