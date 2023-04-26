@@ -11,17 +11,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.learningstrenght.calculadoras.CalculadorasFragment;
-import com.example.learningstrenght.calculadoras.calorias.CalculadoraCaloriasActivity;
-import com.example.learningstrenght.calculadoras.rm.CalculadoraRmActivity;
-import com.example.learningstrenght.databinding.ActivityMainBinding;
 import com.example.learningstrenght.databinding.ActivityPantallaPrincipalBinding;
 import com.example.learningstrenght.login.MainActivity;
 import com.example.learningstrenght.rutinas.RutinasFragment;
+import com.example.learningstrenght.usuario.PerfilUsuarioFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -43,7 +39,7 @@ public class PantallaPrincipal extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         binding.bottomNavigationViewPantallaPrincipal.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case R.id.Rutinas:
                     replaceFragment(new RutinasFragment());
                     break;
@@ -51,7 +47,11 @@ public class PantallaPrincipal extends AppCompatActivity {
                     replaceFragment(new CalculadorasFragment());
                     break;
                 case R.id.Perfil:
-                    replaceFragment(new PerfilUsuarioFragment());
+                    if (mAuth.getCurrentUser().isAnonymous()) {
+                        startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
+                    } else {
+                        replaceFragment(new PerfilUsuarioFragment());
+                    }
                     break;
             }
 
@@ -60,7 +60,7 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment){
+    private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayoutPantallaPrincipal, fragment);
@@ -71,18 +71,19 @@ public class PantallaPrincipal extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null){
+        if (currentUser == null) {
             signInAnonymous();
         }
     }
+
     private void signInAnonymous() {
         mAuth.signInAnonymously().addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(PantallaPrincipal.this, "Signed in Anonymously", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(PantallaPrincipal.this, MainActivity.class));
-                }else {
+                } else {
                     Toast.makeText(PantallaPrincipal.this, "Not Succesful. " + task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
             }

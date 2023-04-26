@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".PerfilUsuarioActivity"
+            android:name=".usuario.PerfilUsuarioActivity"
             android:exported="false" />
         <!-- Calculadoras -->
         <!-- Calculadora calorias -->

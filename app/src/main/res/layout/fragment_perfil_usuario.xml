@@ -1,110 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutFragmentPerfilUsuario"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PerfilUsuarioFragment">
+    android:padding="16dp"
+    tools:context=".usuario.PerfilUsuarioFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aqui va la informacion del perfil del usuario, asi que aqui la tienes.
-        Pd: si eres anónimo te vas a comer un cagao." />
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:id="@+id/linearLayoutFragmentPerfilUsuario">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/fotoFragmentPerfilUsuario"
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:contentDescription="@string/foto_de_perfil_del_usuario"
             android:padding="4dp"
             android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:shapeAppearanceOverlay="@style/roundedImageViewrounded"
             app:srcCompat="@drawable/cbumperro"
             app:strokeColor="@color/black"
             app:strokeWidth="0dp" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:background="?android:attr/listDivider" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnMenuFragmentPerfilUsuario"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/boton_menu"
+            android:src="@drawable/baseline_more_vert_24"
+            app:backgroundTint="#DFDFDF"
+            app:elevation="0dp"
+            app:fabCustomSize="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="?android:attr/listDivider" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tilNombreUsuarioFragmentPerfilUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/nombre_de_usuario"
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/baseline_alternate_email_24" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tilNombreFragmentPerfilUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/nombre"
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/baseline_person_outline_24" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tilEmailFragmentPerfilUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/email"
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/baseline_mail_outline_24" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tilFechaNacFragmentPerfilusuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/fecha_de_nacimiento"
+        android:textSize="20sp"
+        app:startIconDrawable="@drawable/baseline_calendar_today_24" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tilNombreUsuarioFragmentPerfilUsuario"
+            android:id="@+id/tilPesoFragmentPerfilusuario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:hint="Nombre de usuario"
-            android:textSize="20dp"
-            app:startIconDrawable="@drawable/baseline_alternate_email_24"></com.google.android.material.textview.MaterialTextView>
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:text="@string/altura"
+            android:textSize="20sp"
+            app:suffixText=" cm" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tilNombreFragmentPerfilUsuario"
+            android:id="@+id/tilAlturaFragmentPerfilusuario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:hint="Nombre"
-            android:textSize="20dp"
-            app:startIconDrawable="@drawable/baseline_person_outline_24"></com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tilEmailFragmentPerfilUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:hint="Email"
-            android:textSize="20dp"
-            app:startIconDrawable="@drawable/baseline_mail_outline_24"></com.google.android.material.textview.MaterialTextView>
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tilFechaNacFragmentPerfilusuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:hint="Fecha de nacimiento"
-            android:textSize="20dp"
-            app:startIconDrawable="@drawable/baseline_calendar_today_24"></com.google.android.material.textview.MaterialTextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tilPesoFragmentPerfilusuario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="4dp"
-                android:layout_weight="1"
-                android:hint="Altura"
-                android:textSize="20dp"
-                app:suffixText=" cm"></com.google.android.material.textview.MaterialTextView>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tilAlturaFragmentPerfilusuario"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="4dp"
-                android:layout_weight="1"
-                android:hint="Peso"
-                android:textSize="20dp"
-                app:suffixText=" kg"></com.google.android.material.textview.MaterialTextView>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:text="@string/peso"
+            android:textSize="20sp"
+            app:suffixText=" kg" />
 
     </LinearLayout>
 
-</FrameLayout>
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/aqui_van_los_rms"
+        android:textSize="90sp" />
+
+</LinearLayout>
