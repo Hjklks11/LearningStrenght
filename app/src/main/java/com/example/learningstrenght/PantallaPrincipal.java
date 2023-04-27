@@ -58,6 +58,10 @@ public class PantallaPrincipal extends AppCompatActivity {
             return true;
         });
 
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            finishAffinity();
+        }
+
     }
 
     private void replaceFragment(Fragment fragment) {

@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rutinas.RutinasFragment">
+    tools:context=".rutinas.RutinasFragment"
+    android:background="@drawable/cbumperro2">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Este fragment no tiene nada, mira el fondo en blanco." />
+        android:layout_gravity="center_horizontal"
+        android:text="Este fragment no tiene nada, \nfeliz navidad de parte de Cbum y su perro."
+        android:textColor="@color/white"
+        android:textAlignment="center"/>
 
 </FrameLayout>

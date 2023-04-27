@@ -5,12 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +20,7 @@ import com.google.android.material.textview.MaterialTextView;
 
 import java.util.Map;
 
-public class CalculadoraCaloriasActivity extends AppCompatActivity {
+public class CalculadoraMacrosActivity extends AppCompatActivity {
 
     TextInputLayout tilPeso, tilAltura, tilEdad;
     TextInputEditText peso, altura, edad;
@@ -48,7 +45,7 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
         btnInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CalculadoraCaloriasActivity.this, InfoActivity.class));
+                startActivity(new Intent(CalculadoraMacrosActivity.this, InfoActivity.class));
             }
         });
 
@@ -68,7 +65,7 @@ public class CalculadoraCaloriasActivity extends AppCompatActivity {
                 String objetivo = spinnerObjetivo.getSelectedItem().toString();
 
                 if (!sPeso.isEmpty() && !sAltura.isEmpty() && !sEdad.isEmpty() && !sexo.isEmpty() && spinnerActividad.getSelectedItemPosition() >= 1) {
-                    CalculadoraCalorias calCal = new CalculadoraCalorias(Integer.parseInt(sPeso), Integer.parseInt(sAltura), Integer.parseInt(sEdad)
+                    CalculadoraMacros calCal = new CalculadoraMacros(Integer.parseInt(sPeso), Integer.parseInt(sAltura), Integer.parseInt(sEdad)
                     , sexo, Double.parseDouble(sActividad.split("->")[0]), objetivo);
                     Map<String, Macros> mapMacros = calCal.getMacros();
 

@@ -89,7 +89,7 @@
                         app:strokeWidth="0dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/button"
+                        android:id="@+id/btnCambiarFotoPerfilUsuario"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="#0000FF00"
@@ -109,7 +109,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:hint="@string/nombre_de_usuario"
+                        android:hint="Nombre de usuario*"
                         app:startIconDrawable="@drawable/baseline_alternate_email_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -123,7 +123,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:hint="@string/nombre"
+                        android:hint="Nombre*"
                         app:startIconDrawable="@drawable/baseline_person_outline_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -137,7 +137,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:hint="@string/email"
+                        android:hint="Email*"
                         app:startIconDrawable="@drawable/baseline_mail_outline_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -147,15 +147,15 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilFechaNacPerfilusuario"
+                        android:id="@+id/tilFechaNacPerfilUsuario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:hint="@string/fecha_de_nacimiento"
+                        android:hint="Fecha de nacimiento*"
                         app:startIconDrawable="@drawable/baseline_calendar_today_24">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtFechaNacPerfilusuario"
+                            android:id="@+id/txtFechaNacPerfilUsuario"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -167,7 +167,7 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tilPesoPerfilusuario"
+                            android:id="@+id/tilPesoPerfilUsuario"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="4dp"
@@ -176,13 +176,13 @@
                             app:suffixText=" cm">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txtPesoPerfilusuario"
+                                android:id="@+id/txtPesoPerfilUsuario"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/tilAlturaPerfilusuario"
+                            android:id="@+id/tilAlturaPerfilUsuario"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="4dp"
@@ -191,7 +191,7 @@
                             app:suffixText=" kg">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/txtAlturaPerfilusuario"
+                                android:id="@+id/txtAlturaPerfilUsuario"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
                         </com.google.android.material.textfield.TextInputLayout>

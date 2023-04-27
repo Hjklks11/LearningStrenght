@@ -17,7 +17,7 @@
         <!-- Calculadoras -->
         <!-- Calculadora calorias -->
         <activity
-            android:name=".calculadoras.calorias.CalculadoraCaloriasActivity"
+            android:name=".calculadoras.calorias.CalculadoraMacrosActivity"
             android:exported="false" />
         <activity
             android:name=".calculadoras.calorias.InfoActivity"

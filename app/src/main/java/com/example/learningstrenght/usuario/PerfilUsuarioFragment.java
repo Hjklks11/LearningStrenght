@@ -72,7 +72,7 @@ public class PerfilUsuarioFragment extends Fragment {
                                 Toast.makeText(getContext(), "Aqui no se puede entrar", Toast.LENGTH_SHORT).show();
                                 break;
                         }
-                        return false;
+                        return true;
                     }
                 });
                 popup.show();

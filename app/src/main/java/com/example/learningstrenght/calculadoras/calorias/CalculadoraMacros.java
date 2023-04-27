@@ -1,18 +1,15 @@
 package com.example.learningstrenght.calculadoras.calorias;
 
-import android.widget.Toast;
-
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CalculadoraCalorias {
+public class CalculadoraMacros {
     Map<String, Macros> mapMacros;
     Integer peso, altura, edad;
     String sexo, objetivo;
     Double actividad;
 
-    public CalculadoraCalorias(Integer peso, Integer altura, Integer edad, String sexo, Double actividad, String objetivo) {
+    public CalculadoraMacros(Integer peso, Integer altura, Integer edad, String sexo, Double actividad, String objetivo) {
         this.peso = peso;
         this.altura = altura;
         this.edad = edad;
