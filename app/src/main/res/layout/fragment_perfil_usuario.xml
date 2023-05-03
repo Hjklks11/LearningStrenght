@@ -35,7 +35,6 @@
             android:layout_height="40dp"
             android:contentDescription="@string/boton_menu"
             android:src="@drawable/baseline_more_vert_24"
-            app:backgroundTint="#DFDFDF"
             app:elevation="0dp"
             app:fabCustomSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"

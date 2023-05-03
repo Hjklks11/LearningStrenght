@@ -19,9 +19,9 @@ public class Macros {
 
     @Override
     public String toString() {
-        return "Calorias -> " + calorias + "kcal"
-                + "\nProteinas: " + prote + "g"
-                + "\nCarbohidratos: " + carbos + "g"
-                + "\nGrasas: " + grasas + "g";
+        return "\tCalorias -> " + calorias + "kcal"
+                + "\n\tProteinas: " + prote + "g"
+                + "\n\tCarbohidratos: " + carbos + "g"
+                + "\n\tGrasas: " + grasas + "g";
     }
 }

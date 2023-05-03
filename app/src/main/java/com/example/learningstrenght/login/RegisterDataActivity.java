@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+    // TODO: cambiar edad por fecha de nacimiento
     private TextInputEditText tVUsuario, tVEdad, tVPeso, tVAltura, tVRm1, tVRm2, tVRm3;
     private Spinner spinnerDeporte;
     private LinearLayout layoutRm;

@@ -31,6 +31,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_usuario);
 
+        // TODO: recoger datos del usuario de la bd
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser user = mAuth.getCurrentUser();
@@ -86,6 +87,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
     private void modificarDatosUsuario() {
         if (chequearDatos()) {
             HashMap<String, String> mapUsuario = recogerDatosUsuario();
+            // TODO: actualizar datos usuario en la bd, los campos peso y altura pueden ser nulos
 
         } else {
             txtUsuario.setError(" ");

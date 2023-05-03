@@ -71,7 +71,7 @@ public class CalculadoraMacros {
             grasas = calorias * 0.3;
             carbos = calorias - prote * 4 - grasas;
         }
-        return new Macros(calorias, prote, grasas / 9, carbos / 4); // gramos de cada
+        return new Macros(calorias, prote, carbos / 4, grasas / 9); // gramos de cada
     }
 
 }
