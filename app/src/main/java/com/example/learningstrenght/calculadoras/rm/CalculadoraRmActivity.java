@@ -89,7 +89,7 @@ public class CalculadoraRmActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculadoraRmActivity.this, FormulasActivity.class);
-                intent.putExtra("Formula", "brzycki");
+                intent.putExtra("Formula", R.drawable.brzycki);
                 intent.putExtra("DatosUsuario", new String[]{speso, srepes});
                 startActivity(intent);
             }
@@ -98,7 +98,7 @@ public class CalculadoraRmActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalculadoraRmActivity.this, FormulasActivity.class);
-                intent.putExtra("Formula", "epley");
+                intent.putExtra("Formula", R.drawable.epley);
                 intent.putExtra("DatosUsuario", new String[]{speso, srepes});
                 startActivity(intent);
             }

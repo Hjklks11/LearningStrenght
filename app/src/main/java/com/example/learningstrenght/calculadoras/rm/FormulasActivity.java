@@ -17,7 +17,7 @@ public class FormulasActivity extends AppCompatActivity {
     LinearLayout layout;
     ShapeableImageView imagen;
     MaterialTextView txt;
-    String formula;
+    int formula;
     String[] datosUsuario;
 
     @Override
@@ -25,17 +25,16 @@ public class FormulasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculadora_rm_formulas);
 
-        formula = getIntent().getStringExtra("Formula");
+        formula = getIntent().getIntExtra("Formula", 0);
         datosUsuario = getIntent().getStringArrayExtra("DatosUsuario");
-
-        Drawable foto = Drawable.createFromPath("@drawable/" + formula);
 
         layout = findViewById(R.id.layoutFormulas);
         imagen = findViewById(R.id.imagenFormulas);
         txt = findViewById(R.id.txtFormulas);
 
-        imagen.setImageDrawable(foto);
+        imagen.setImageResource(formula);
 
-        layout.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class).putExtra("DatosUsuario", datosUsuario)));
+        //layout.setOnClickListener(view -> startActivity(new Intent(FormulasActivity.this, CalculadoraRmActivity.class).putExtra("DatosUsuario", datosUsuario)));
+        layout.setOnClickListener(view -> finish());
     }
 }

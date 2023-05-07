@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.example.learningstrenght.PantallaPrincipal;
 import com.example.learningstrenght.R;
 import com.example.learningstrenght.usuario.PerfilUsuarioActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,46 +43,46 @@ public class PerfilUsuarioFragment extends Fragment {
 
         inicializarComponentes(view);
 
-        if (user.isAnonymous()) {
-            layoutPrincipal = view.findViewById(R.id.linearLayoutFragmentPerfilUsuario);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                layoutPrincipal.setForeground(Drawable.createFromPath("@drawable/cbumperro"));
-            }
-        } else {
-            txtUsuario.setText(user.getDisplayName());
-            txtNombre.setText("RevientaAbuelas69");
-            txtCorreo.setText(user.getEmail());
-            txtFechaNac.setText(user.getMetadata().toString());
-            txtPeso.setText("Curvado");
-            txtAltura.setText("Enano");
-        }
+        ponerDatos(user);
 
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PopupMenu popup = new PopupMenu(getContext(), view);
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        switch (menuItem.getItemId()){
-                            case R.id.EditarUsuario:
-                                startActivity(new Intent(getContext(), PerfilUsuarioActivity.class));
-                                break;
-                            case R.id.EditarRms:
-                                Toast.makeText(getContext(), "No estas listo para eso", Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.Ajustes:
-                                Toast.makeText(getContext(), "Aqui no se puede entrar", Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                        return true;
-                    }
-                });
-                popup.show();
-            }
-        });
+        btnMenu.setOnClickListener(view1 -> showMenu(view1, R.menu.fragment_perfil_usuario_menu));
 
         return view;
+    }
+
+    private void ponerDatos(FirebaseUser user) {
+        if (user.getDisplayName().isBlank()) txtUsuario.setText("Pancho");
+        else txtUsuario.setText(user.getDisplayName());
+        txtNombre.setText("RevientaAbuelas69");
+        txtCorreo.setText(user.getEmail());
+        txtFechaNac.setText(user.getMetadata().toString());
+        txtPeso.setText("Curvado");
+        txtAltura.setText("Enano");
+    }
+
+    private void showMenu(View view, int fragment_perfil_usuario_menu) {
+        PopupMenu popup = new PopupMenu(getContext(), view);
+        popup.getMenuInflater().inflate(fragment_perfil_usuario_menu, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.EditarUsuario:
+                        startActivity(new Intent(getContext(), PerfilUsuarioActivity.class));
+                        break;
+                    case R.id.EditarRms:
+                        Toast.makeText(getContext(), "No estas listo para eso", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.Ajustes:
+                        Toast.makeText(getContext(), "Aqui no se puede entrar", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                return false;
+            }
+        });
+        popup.setOnDismissListener(popupMenu -> {});
+        popup.show();
     }
 
     private void inicializarComponentes(View view) {
