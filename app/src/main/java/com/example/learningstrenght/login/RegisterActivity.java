@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.learningstrenght.R;
@@ -37,7 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 9001;
     private GoogleSignInClient mGoogleSignInClient;
-    Button btnLogin;
+    Button btnRegister;
     SignInButton btnGoogle;
     TextInputLayout tilEmail, tilPassword;
     TextInputEditText email, password;
@@ -52,12 +51,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.editTextCorreoRegister);
         password = findViewById(R.id.editTextContrasenaRegister);
-        btnLogin = findViewById(R.id.btnCrearCuentaRegister);
+        btnRegister = findViewById(R.id.btnCrearCuentaRegister);
         btnGoogle = findViewById(R.id.btnGoogleRegister);
         tilEmail = findViewById(R.id.tilCorreoRegister);
         tilPassword = findViewById(R.id.tilContrasenaRegister);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String emailUser = email.getText().toString().trim();

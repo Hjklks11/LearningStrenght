@@ -17,7 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Este fragment tiene 16 botones, adivina cuáles funcionan." />
+            android:text="Este fragment tiene 16 botones, adivina cuáles funcionan."
+            android:textColor="@color/black" />
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -146,6 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Este boton tambien"
+                android:textColor="@color/black"
                 android:translationX="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -156,6 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Este boton funciona"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"

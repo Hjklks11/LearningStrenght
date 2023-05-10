@@ -75,12 +75,18 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
 
         btnCambiarFoto.setOnClickListener(view -> cambiarfoto());
 
+        txtUsuario.setOnFocusChangeListener((view, b) -> {
+            if (!b && txtUsuario.getText().toString().isBlank())txtUsuario.setError("Tienes que escribir un nombre de usuario"); else txtUsuario.setError(null);
+        });
+        txtNombre.setOnFocusChangeListener((view, b) -> {
+            if (!b && txtNombre.getText().toString().isBlank())txtNombre.setError("Tienes que escribir tu nombre"); else txtNombre.setError(null);
+        });
+        txtEmail.setOnFocusChangeListener((view, b) -> {
+            if (!b && txtEmail.getText().toString().isBlank())txtEmail.setError("Tienes que escribir tu email"); else txtEmail.setError(null);
+        });
+
         txtFecha.setOnFocusChangeListener((view, b) -> {
-            if (b) {
-                showDatePickerDialog();
-            } else {
-                txtFecha.setFocusable(true);
-            }
+            if (b) showDatePickerDialog();
         });
     }
 
@@ -90,11 +96,7 @@ public class PerfilUsuarioActivity extends AppCompatActivity {
             // TODO: actualizar datos usuario en la bd, los campos peso y altura pueden ser nulos
 
         } else {
-            txtUsuario.setError(" ");
-            txtNombre.setError(" ");
-            txtEmail.setError(" ");
-            txtFecha.setError(" ");
-            Toast.makeText(this, "Los campos marcados en rojo son obligatorios.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Los campos marcados con * son obligatorios.", Toast.LENGTH_SHORT).show();
         }
     }
 

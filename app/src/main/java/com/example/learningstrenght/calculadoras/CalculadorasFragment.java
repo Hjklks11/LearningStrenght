@@ -14,7 +14,9 @@ import android.widget.Toast;
 import com.example.learningstrenght.PantallaPrincipal;
 import com.example.learningstrenght.R;
 import com.example.learningstrenght.calculadoras.calorias.CalculadoraMacros;
+import com.example.learningstrenght.calculadoras.calorias.CalculadoraMacrosActivity;
 import com.example.learningstrenght.calculadoras.rm.CalculadoraRm;
+import com.example.learningstrenght.calculadoras.rm.CalculadoraRmActivity;
 
 import java.util.ArrayList;
 
@@ -42,8 +44,8 @@ public class CalculadorasFragment extends Fragment {
         btnRm = view.findViewById(R.id.btnCalculadoraRmFragmentCalculadoras);
         btnMacros = view.findViewById(R.id.btnCalculadoraMacrosFragmentCalculadoras);
 
-        btnRm.setOnClickListener(view1 -> startActivity(new Intent(getContext(), CalculadoraRm.class)));
-        btnMacros.setOnClickListener(view1 -> startActivity(new Intent(getContext(), CalculadoraMacros.class)));
+        btnRm.setOnClickListener(view1 -> startActivity(new Intent(getContext(), CalculadoraRmActivity.class)));
+        btnMacros.setOnClickListener(view1 -> startActivity(new Intent(getContext(), CalculadoraMacrosActivity.class)));
     }
 
     private void inicializarComponentes(View v) {

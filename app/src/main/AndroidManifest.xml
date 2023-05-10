@@ -11,9 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="31">
-        <activity
-            android:name=".usuario.PerfilUsuarioActivity"
-            android:exported="false" />
+
         <!-- Calculadoras -->
         <!-- Calculadora calorias -->
         <activity
@@ -21,25 +19,35 @@
             android:exported="false" />
         <activity
             android:name=".calculadoras.calorias.InfoActivity"
-            android:exported="false" /> <!-- Calculadora rm -->
+            android:exported="false" />
+        <!-- Calculadora rm -->
+        <activity
+            android:name=".calculadoras.rm.CalculadoraRmActivity"
+            android:exported="false" />
         <activity
             android:name=".calculadoras.rm.FormulasActivity"
             android:exported="false" />
-        <activity
-            android:name=".calculadoras.rm.CalculadoraRmActivity"
-            android:exported="false" /> <!-- Login -->
-        <activity
-            android:name=".login.RegisterDataActivity"
-            android:exported="false" />
-        <activity
-            android:name=".login.RegisterActivity"
-            android:exported="false" />
+
+        <!-- Login -->
         <activity
             android:name=".login.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".login.MainActivity"
-            android:exported="false" /> <!-- Pantalla principal -->
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterDataActivity"
+            android:exported="false" />
+
+        <!-- Usuario -->
+        <activity
+            android:name=".usuario.PerfilUsuarioActivity"
+            android:exported="false" />
+
+        <!-- Pantalla principal -->
         <activity
             android:name=".PantallaPrincipal"
             android:exported="true">

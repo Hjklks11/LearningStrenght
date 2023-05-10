@@ -111,6 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:hint="Nombre de usuario*"
+                        app:errorEnabled="true"
                         app:startIconDrawable="@drawable/baseline_alternate_email_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -125,6 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:hint="Nombre*"
+                        app:errorEnabled="true"
                         app:startIconDrawable="@drawable/baseline_person_outline_24">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -139,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:hint="Email*"
+                        app:errorEnabled="true"
                         app:startIconDrawable="@drawable/baseline_mail_outline_24">
 
                         <com.google.android.material.textfield.TextInputEditText
