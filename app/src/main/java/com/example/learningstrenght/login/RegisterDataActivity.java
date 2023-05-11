@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.learningstrenght.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,7 +27,7 @@ import java.util.Map;
 
 public class RegisterDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     // TODO: cambiar edad por fecha de nacimiento
-    private TextInputEditText tVUsuario, tVEdad, tVPeso, tVAltura, tVRm1, tVRm2, tVRm3;
+    private TextInputEditText txtUsuario, txtFecha, txtPeso, txtAltura, txtRm1, txtRm2, txtRm3;
     private Spinner spinnerDeporte;
     private LinearLayout layoutRm;
     private Button btnEntrar;
@@ -42,20 +43,20 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
 
         inicializarSpinner();
 
-        botonEntrar();
+        listeners();
     }
 
     private void setRm(String rm1, String rm2, String rm3, String tipo) {
-        tVRm1.setHint(tipo);
-        tVRm2.setHint(tipo);
-        tVRm3.setHint(tipo);
+        txtRm1.setHint(tipo);
+        txtRm2.setHint(tipo);
+        txtRm3.setHint(tipo);
 
-        tVRm1.setText(rm1);
-        tVRm2.setText(rm2);
-        tVRm3.setText(rm3);
+        txtRm1.setText(rm1);
+        txtRm2.setText(rm2);
+        txtRm3.setText(rm3);
     }
 
-    private void botonEntrar() {
+    private void listeners() {
         btnEntrar = findViewById(R.id.btnEntrarRegisterData);
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +74,10 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
                     startActivity(new Intent(RegisterDataActivity.this, LoginActivity.class));
                 }
             }
+        });
+
+        txtFecha.setOnFocusChangeListener((view, b) -> {
+            if (b) showDatePickerDialog();
         });
     }
 
@@ -96,7 +101,7 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
     private void inicializarMapa() {
         mapUsuario = new HashMap<>();
         mapUsuario.put("Usuario", usuario);
-        mapUsuario.put("Edad", edad);
+        mapUsuario.put("FechaNac", edad);
         mapUsuario.put("Peso", peso);
         mapUsuario.put("Altura", altura);
         // TODO: si el deporte es culturismo los rm seran nulos
@@ -109,24 +114,24 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void recogerDatosTv() {
-        usuario = tVUsuario.getText().toString().trim();
-        edad = tVEdad.getText().toString().trim();
-        peso = tVPeso.getText().toString().trim();
-        altura = tVAltura.getText().toString().trim();
+        usuario = txtUsuario.getText().toString().trim();
+        edad = txtFecha.getText().toString().trim();
+        peso = txtPeso.getText().toString().trim();
+        altura = txtAltura.getText().toString().trim();
         deporte = spinnerDeporte.getSelectedItem().toString();
-        rm1 = tVRm1.getText().toString().trim();
-        rm2 = tVRm2.getText().toString().trim();
-        rm3 = tVRm3.getText().toString().trim();
+        rm1 = txtRm1.getText().toString().trim();
+        rm2 = txtRm2.getText().toString().trim();
+        rm3 = txtRm3.getText().toString().trim();
     }
 
     private void inicializarEditText() {
-        tVUsuario = findViewById(R.id.txtNombreUsuarioRegisterData);
-        tVEdad = findViewById(R.id.txtEdadRegisterData);
-        tVPeso = findViewById(R.id.txtPesoRegisterData);
-        tVAltura = findViewById(R.id.txtAlturaRegisterData);
-        tVRm1 = findViewById(R.id.txtRm1RegisterData);
-        tVRm2 = findViewById(R.id.txtRm2RegisterData);
-        tVRm3 = findViewById(R.id.txtRm3RegisterData);
+        txtUsuario = findViewById(R.id.txtNombreUsuarioRegisterData);
+        txtFecha = findViewById(R.id.txtFechaNacRegisterData);
+        txtPeso = findViewById(R.id.txtPesoRegisterData);
+        txtAltura = findViewById(R.id.txtAlturaRegisterData);
+        txtRm1 = findViewById(R.id.txtRm1RegisterData);
+        txtRm2 = findViewById(R.id.txtRm2RegisterData);
+        txtRm3 = findViewById(R.id.txtRm3RegisterData);
     }
 
     private void inicializarSpinner() {
@@ -170,5 +175,15 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
         layoutRm.setVisibility(View.GONE);
+    }
+
+    private void showDatePickerDialog() {
+        MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.datePicker().setTitleText("Fecha nacimiento").build();
+
+        materialDatePicker.addOnPositiveButtonClickListener(selection -> txtFecha.setText("" + materialDatePicker.getHeaderText()));
+
+        materialDatePicker.addOnDismissListener(dialogInterface -> txtFecha.clearFocus());
+
+        materialDatePicker.show(getSupportFragmentManager(), "TAG");
     }
 }
