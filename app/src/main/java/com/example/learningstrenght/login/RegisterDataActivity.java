@@ -17,10 +17,12 @@ import android.widget.Toast;
 
 import com.example.learningstrenght.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,13 +33,14 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
     private Spinner spinnerDeporte;
     private LinearLayout layoutRm;
     private Button btnEntrar;
-    private String usuario, edad, peso, altura, deporte, rm1, rm2, rm3;
-    private Map<String, String> mapUsuario;
+    private FirebaseFirestore mFirestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_data);
+
+        mFirestore = FirebaseFirestore.getInstance();
 
         inicializarEditText();
 
@@ -61,12 +64,12 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                recogerDatosTv();
-                if (usuario.isEmpty() || edad.isEmpty()) {
+                Map<String, String> mapDatosUsuario = recogerDatosTv();
+                if (mapDatosUsuario.get("Usuario").isEmpty() || mapDatosUsuario.get("FechaNac").isEmpty()) {
                     Toast.makeText(RegisterDataActivity.this, "Por favor, rellene los campos marcados con un *.", Toast.LENGTH_SHORT).show();
                 } else {
                     // TODO: Subir datos a la base de datos
-                    subirABd();
+                    subirABd(mapDatosUsuario);
 
                     enviarCorreoVerificacion();
                     FirebaseAuth.getInstance().signOut();
@@ -81,8 +84,24 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    private void subirABd() {
-        inicializarMapa();
+    private void subirABd(Map<String, String> mapDatosUsuario) {
+        mFirestore.collection("Usuario").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(mapDatosUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful())
+                    Toast.makeText(RegisterDataActivity.this, "Datos del usuario registrados correctamente", Toast.LENGTH_SHORT).show();
+                else{
+                    Toast.makeText(RegisterDataActivity.this, "Warning: " + task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Log.w(TAG, "Datos del usuario insertados incorrectamente en RegisterDataActivity: " + task.getException().getMessage());
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterDataActivity.this, "Error al registrar los datos del usuario", Toast.LENGTH_SHORT).show();
+                Log.w(TAG, "Error al registrar los datos del usuario en RegisterDataActivity: " + e.getMessage());
+            }
+        });
     }
 
     private void enviarCorreoVerificacion() {
@@ -98,30 +117,19 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    private void inicializarMapa() {
-        mapUsuario = new HashMap<>();
-        mapUsuario.put("Usuario", usuario);
-        mapUsuario.put("FechaNac", edad);
-        mapUsuario.put("Peso", peso);
-        mapUsuario.put("Altura", altura);
-        // TODO: si el deporte es culturismo los rm seran nulos
-        if (!deporte.equals("Selecciona tu deporte")) {
-            mapUsuario.put("Deporte", deporte);
-            mapUsuario.put("Rm1", rm1);
-            mapUsuario.put("Rm2", rm2);
-            mapUsuario.put("Rm3", rm3);
+    private Map<String, String> recogerDatosTv() {
+        Map<String, String> mapDatosUsuario = new HashMap<>();
+        mapDatosUsuario.put("Usuario", txtUsuario.getText().toString().trim());
+        mapDatosUsuario.put("FechaNac", txtFecha.getText().toString().trim());
+        mapDatosUsuario.put("Peso", txtPeso.getText().toString().trim());
+        mapDatosUsuario.put("Altura", txtAltura.getText().toString().trim());
+        if (!spinnerDeporte.getSelectedItem().toString().equals("Selecciona tu deporte")) {
+            mapDatosUsuario.put("Deporte", spinnerDeporte.getSelectedItem().toString());
+            mapDatosUsuario.put("Rm1", txtRm1.getText().toString().trim());
+            mapDatosUsuario.put("Rm2", txtRm2.getText().toString().trim());
+            mapDatosUsuario.put("Rm3", txtRm3.getText().toString().trim());
         }
-    }
-
-    private void recogerDatosTv() {
-        usuario = txtUsuario.getText().toString().trim();
-        edad = txtFecha.getText().toString().trim();
-        peso = txtPeso.getText().toString().trim();
-        altura = txtAltura.getText().toString().trim();
-        deporte = spinnerDeporte.getSelectedItem().toString();
-        rm1 = txtRm1.getText().toString().trim();
-        rm2 = txtRm2.getText().toString().trim();
-        rm3 = txtRm3.getText().toString().trim();
+        return mapDatosUsuario;
     }
 
     private void inicializarEditText() {
