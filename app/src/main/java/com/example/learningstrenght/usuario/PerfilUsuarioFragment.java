@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.learningstrenght.PantallaPrincipal;
 import com.example.learningstrenght.R;
+import com.example.learningstrenght.login.MainActivity;
 import com.example.learningstrenght.usuario.PerfilUsuarioActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -77,6 +78,9 @@ public class PerfilUsuarioFragment extends Fragment {
                     case R.id.Ajustes:
                         Toast.makeText(getContext(), "Aqui no se puede entrar", Toast.LENGTH_SHORT).show();
                         break;
+                    case R.id.LogOut:
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(getContext(), MainActivity.class));
                 }
                 return false;
             }
