@@ -17,10 +17,10 @@ import android.widget.Toast;
 
 import com.example.learningstrenght.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -29,6 +29,7 @@ import java.util.Map;
 
 public class RegisterDataActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     // TODO: cambiar edad por fecha de nacimiento
+    private TextInputLayout tilRm1, tilRm2, tilRm3;
     private TextInputEditText txtUsuario, txtFecha, txtPeso, txtAltura, txtRm1, txtRm2, txtRm3;
     private Spinner spinnerDeporte;
     private LinearLayout layoutRm;
@@ -42,7 +43,7 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
 
         mFirestore = FirebaseFirestore.getInstance();
 
-        inicializarEditText();
+        inicializarTxt();
 
         inicializarSpinner();
 
@@ -50,13 +51,13 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void setRm(String rm1, String rm2, String rm3, String tipo) {
-        txtRm1.setHint(tipo);
-        txtRm2.setHint(tipo);
-        txtRm3.setHint(tipo);
+        tilRm1.setSuffixText(tipo);
+        tilRm2.setSuffixText(tipo);
+        tilRm3.setSuffixText(tipo);
 
-        txtRm1.setText(rm1);
-        txtRm2.setText(rm2);
-        txtRm3.setText(rm3);
+        tilRm1.setHint(rm1);
+        tilRm2.setHint(rm2);
+        tilRm3.setHint(rm3);
     }
 
     private void listeners() {
@@ -64,15 +65,15 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Map<String, String> mapDatosUsuario = recogerDatosTv();
-                if (mapDatosUsuario.get("Usuario").isEmpty() || mapDatosUsuario.get("FechaNac").isEmpty()) {
+                Map<String, Object> mapDatosUsuario = recogerDatosTv();
+                if (mapDatosUsuario.get("Usuario").toString().isEmpty() || mapDatosUsuario.get("FechaNac").toString().isEmpty()) {
                     Toast.makeText(RegisterDataActivity.this, "Por favor, rellene los campos marcados con un *.", Toast.LENGTH_SHORT).show();
                 } else {
                     // TODO: Subir datos a la base de datos
                     subirABd(mapDatosUsuario);
 
                     enviarCorreoVerificacion();
-                    FirebaseAuth.getInstance().signOut();
+//                    FirebaseAuth.getInstance().signOut();
                     finish();
                     startActivity(new Intent(RegisterDataActivity.this, LoginActivity.class));
                 }
@@ -84,24 +85,19 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    private void subirABd(Map<String, String> mapDatosUsuario) {
-        mFirestore.collection("Usuario").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(mapDatosUsuario).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                    Toast.makeText(RegisterDataActivity.this, "Datos del usuario registrados correctamente", Toast.LENGTH_SHORT).show();
-                else{
-                    Toast.makeText(RegisterDataActivity.this, "Warning: " + task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    Log.w(TAG, "Datos del usuario insertados incorrectamente en RegisterDataActivity: " + task.getException().getMessage());
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(RegisterDataActivity.this, "Error al registrar los datos del usuario", Toast.LENGTH_SHORT).show();
-                Log.w(TAG, "Error al registrar los datos del usuario en RegisterDataActivity: " + e.getMessage());
-            }
-        });
+    private void subirABd(Map<String, Object> mapDatosUsuario) {
+        String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        mapDatosUsuario.put("id", id);
+
+        mFirestore.collection("Usuario")
+                .document(id)
+                .set(mapDatosUsuario)
+                .addOnSuccessListener(documentReference ->
+                    Toast.makeText(RegisterDataActivity.this, "Datos del usuario registrados correctamente", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> {
+                    Toast.makeText(RegisterDataActivity.this, "Warning: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    Log.w(TAG, "Error al registrar los datos del usuario en RegisterDataActivity: " + e.getMessage());
+                });
     }
 
     private void enviarCorreoVerificacion() {
@@ -117,8 +113,8 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    private Map<String, String> recogerDatosTv() {
-        Map<String, String> mapDatosUsuario = new HashMap<>();
+    private Map<String, Object> recogerDatosTv() {
+        Map<String, Object> mapDatosUsuario = new HashMap<>();
         mapDatosUsuario.put("Usuario", txtUsuario.getText().toString().trim());
         mapDatosUsuario.put("FechaNac", txtFecha.getText().toString().trim());
         mapDatosUsuario.put("Peso", txtPeso.getText().toString().trim());
@@ -132,7 +128,7 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         return mapDatosUsuario;
     }
 
-    private void inicializarEditText() {
+    private void inicializarTxt() {
         txtUsuario = findViewById(R.id.txtNombreUsuarioRegisterData);
         txtFecha = findViewById(R.id.txtFechaNacRegisterData);
         txtPeso = findViewById(R.id.txtPesoRegisterData);
@@ -140,6 +136,9 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         txtRm1 = findViewById(R.id.txtRm1RegisterData);
         txtRm2 = findViewById(R.id.txtRm2RegisterData);
         txtRm3 = findViewById(R.id.txtRm3RegisterData);
+        tilRm1 = findViewById(R.id.tilRm1RegisterData);
+        tilRm2 = findViewById(R.id.tilRm2RegisterData);
+        tilRm3 = findViewById(R.id.tilRm3RegisterData);
     }
 
     private void inicializarSpinner() {
@@ -150,6 +149,7 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        spinnerDeporte.requestFocus();
         switch (spinnerDeporte.getSelectedItem().toString()) {
             case "Calistenia":
                 setRm("Dominadas", "Fondos", "Flexiones", "repes");
