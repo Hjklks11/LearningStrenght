@@ -69,13 +69,8 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
                 if (mapDatosUsuario.get("Usuario").toString().isEmpty() || mapDatosUsuario.get("FechaNac").toString().isEmpty()) {
                     Toast.makeText(RegisterDataActivity.this, "Por favor, rellene los campos marcados con un *.", Toast.LENGTH_SHORT).show();
                 } else {
-                    // TODO: Subir datos a la base de datos
+                    // TODO: Subir fecha como date a bd
                     subirABd(mapDatosUsuario);
-
-                    enviarCorreoVerificacion();
-//                    FirebaseAuth.getInstance().signOut();
-                    finish();
-                    startActivity(new Intent(RegisterDataActivity.this, LoginActivity.class));
                 }
             }
         });
@@ -92,12 +87,21 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
         mFirestore.collection("Usuario")
                 .document(id)
                 .set(mapDatosUsuario)
-                .addOnSuccessListener(documentReference ->
-                    Toast.makeText(RegisterDataActivity.this, "Datos del usuario registrados correctamente", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(RegisterDataActivity.this, "Datos del usuario registrados correctamente", Toast.LENGTH_SHORT).show();
+                    irALogin();
+                })
                 .addOnFailureListener(e -> {
                     Toast.makeText(RegisterDataActivity.this, "Warning: " + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                     Log.w(TAG, "Error al registrar los datos del usuario en RegisterDataActivity: " + e.getMessage());
                 });
+    }
+
+    private void irALogin() {
+        FirebaseAuth.getInstance().signOut();
+        enviarCorreoVerificacion();
+        finish();
+        startActivity(new Intent(RegisterDataActivity.this, LoginActivity.class));
     }
 
     private void enviarCorreoVerificacion() {
