@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/EditarUsuario"
+        android:title="Editar usuario"/>
+
+    <item android:id="@+id/EditarRms"
+        android:title="Editar Rm"/>
+    <item android:id="@+id/MisRutinas"
+        android:title="Mis Rutinas"/>
+
+    <item android:id="@+id/Ajustes"
+        android:title="Ajustes"/>
+
+    <item android:id="@+id/LogOut"
+        android:title="Cerrar sesion"/>
+
+</menu>

@@ -5,15 +5,62 @@
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
+        android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/cbumperro"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LearningStrenght"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="31">
+
+        <!-- Ajustes -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ajustes.SettingsActivity"
+            android:label="Ajustes"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.DayNight"/>
+        <!-- Calculadoras -->
+        <!-- Calculadora macros -->
+        <activity
+            android:name=".calculadoras.macros.CalculadoraMacrosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".calculadoras.macros.InfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Translucent"/>
+        <!-- Calculadora rm -->
+        <activity
+            android:name=".calculadoras.rm.CalculadoraRmActivity"
+            android:exported="false" />
+        <activity
+            android:name=".calculadoras.rm.FormulasActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Translucent" />
+        <!-- Login -->
+        <activity
+            android:name=".login.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".login.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".login.RegisterDataActivity"
+            android:exported="false" />
+        <!-- Usuario -->
+        <activity
+            android:name=".usuario.PerfilUsuarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".usuario.EditarRmsActivity"
+            android:exported="false" />
+        <!-- Pantalla principal -->
+        <activity
+            android:name=".PantallaPrincipal"
+            android:exported="true"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

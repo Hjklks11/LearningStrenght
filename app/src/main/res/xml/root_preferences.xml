@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Aplicacion">
+
+        <SwitchPreference
+            android:key="switchModoOscuro"
+            android:title="Modo Oscuro"
+            android:defaultValue="false"/>
+        <ListPreference
+            android:key="listaCalculadoras"
+            android:title="Calculadora por defecto"
+            android:defaultValue="Macros"
+            android:entries="@array/calculadoras"
+            app:dialogIcon="@drawable/baseline_calculate_24"
+            app:entryValues="@array/calculadoras"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Cuenta">
+        <EditTextPreference
+            android:key="etCambiarCorreo"
+            android:title="Cambiar correo"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            app:dialogTitle="Introduce tu nuevo correo:"/>
+        <Preference
+            android:key="CambiarContrasenia"
+            android:title="Cambiar contraseña"
+            android:selectAllOnFocus="true"
+            android:singleLine="true" />
+        <Preference
+            android:key="preferenceEliminarCuenta"
+            android:title="Eliminar Cuenta"
+            android:dialogMessage="¿Estas seguro de que deseas eliminar tu cuenta definitivamente?"
+            android:dialogTitle="Eliminar cuenta definitivamente"
+            android:negativeButtonText="No, estoy mas fuerte que el vinagre"
+            android:positiveButtonText="Si, soy un flaco" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
