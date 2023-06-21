@@ -98,8 +98,8 @@ public class RegisterDataActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void irALogin() {
-        FirebaseAuth.getInstance().signOut();
         enviarCorreoVerificacion();
+        FirebaseAuth.getInstance().signOut();
         finish();
         startActivity(new Intent(RegisterDataActivity.this, LoginActivity.class));
     }
