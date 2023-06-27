@@ -2,7 +2,6 @@ package com.example.learningstrenght.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -10,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.learningstrenght.PantallaPrincipal;
 import com.example.learningstrenght.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
-
+    FloatingActionButton fabCerrar;
     Button btnLogin, btnRegister;
 
     @Override
@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        fabCerrar = findViewById(R.id.fabCerrarMainActivity);
         btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
 
+        fabCerrar.setOnClickListener(view -> onBackPressed());
         btnLogin.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoginActivity.class)));
         btnRegister.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
 
@@ -35,10 +37,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if (keyCode == event.KEYCODE_BACK) {
-            startActivity(new Intent(MainActivity.this, PantallaPrincipal.class));
-        }
-        return super.onKeyUp(keyCode, event);
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(MainActivity.this, PantallaPrincipal.class));
     }
 }
